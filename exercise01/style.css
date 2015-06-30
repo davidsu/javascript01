@@ -2,3 +2,14 @@
     margin:0 auto;
     font-size:2rem;
 }
+
+.paging{
+    text-align:center;
+    font-size: 2rem;
+    padding:5px;
+    background-color: #d0ffd0;
+}
+
+.input-label{
+    font-size: 1.3rem;
+}

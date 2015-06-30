@@ -4,17 +4,27 @@ MOD.initTableRows = function(selectionChanged, startIndex, endIndex) {
     var tbody = document.querySelector('tbody');
 
 
+    for (var index = startIndex; index < endIndex; index++) {
+        var item = MOD.items[index];
 
-    MOD.items.forEach(function (item, index, array) {
-        var tr = createRowFromObject(item, index);
+        var tr = createRowFromObject(item, index-startIndex);
         fragment.appendChild(tr);
+    }
 
-        if (index === array.length - 1) {
-            var dummy = document.createElement('div');
-            fragment.appendChild(dummy);
-            tbody.appendChild(fragment);
-        }
-    });
+    var dummy = document.createElement('div');
+    fragment.appendChild(dummy);
+    tbody.appendChild(fragment);
+
+    //MOD.items.forEach(function (item, index, array) {
+    //    var tr = createRowFromObject(item, index);
+    //    fragment.appendChild(tr);
+    //
+    //    if (index === array.length - 1) {
+    //        var dummy = document.createElement('div');
+    //        fragment.appendChild(dummy);
+    //        tbody.appendChild(fragment);
+    //    }
+    //});
 
     function createRowFromObject(obj, index) {
         var tr = document.createElement('tr');
@@ -38,7 +48,7 @@ MOD.initTableRows = function(selectionChanged, startIndex, endIndex) {
         var select = document.createElement('select');
         td.appendChild(select);
         var option;
-        for (var i = 0; i < MOD.items.length; i++) {
+        for (var i = 0; i < endIndex-startIndex; i++) {
             option = document.createElement('option');
             option.innerHTML = i.toString();
             option.value = i;
