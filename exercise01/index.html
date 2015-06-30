@@ -8,11 +8,11 @@
     <body>
         <table class="table">
             <thead>
-                <tr>
-                    <th data-field="indexes">i</th>
+                <tr id="table-headers">
                     <th data-field="id">ID</th>
-                    <th data-field="fn">First</th>
-                    <th data-field="ln">Last</th>
+                    <th data-field="name">Name</th>
+                    <th data-field="desc">Description</th>
+                    <th data-field="price">Price</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,15 +23,10 @@
 
                 <label for="page-size" class="input-label">Page Size</label>
                 <input type="number" id="page-size"/>
+                <button id="set-page-size">Set</button>
                 <span id="paging-navigation-placeholder"></span>
 
         </div>
-
-        <script src="initPagingButtons.js"></script>
-        <script src="initTableRows.js"></script>
-        <script src="items.js"></script>
-        <script src="setUpEvent.js"></script>
-        <script src="utils.js"></script>
-        <script src="app.js"></script>
+        <script src="loader.js"></script>
     </body>
 </html>

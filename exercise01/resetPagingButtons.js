@@ -1,23 +1,17 @@
-var MOD = MOD || {};
 
-MOD.initPagingButtons = function(pageSize){
+MOD.resetPagingButtons = function(){
 
-    function normalizePageSize(){
-        if(!MOD.utils.isNumeric(pageSize)){
-            pageSize = 20;
-            document.querySelector('#page-size').value = pageSize.toString();
-        }
-    }
     function createFragment() {
-        var numOfPages = parseInt(MOD.items.length/pageSize);
+
+        var numOfPages = parseInt(MOD.itemsRepo.getItemsCount()/MOD.paging.getUserDefinedPageSize());
         var fragment = document.createDocumentFragment();
         for (var i = 0; i < numOfPages; i++) {
             var button = document.createElement('button');
             button.innerHTML = i.toString();
             fragment.appendChild(button);
-            (function (i) {
-                button.onclick = function (event) {
-                    MOD.goToPage(parseInt(event.target.innerHTML));
+            (function (pgIndex) {
+                button.onclick = function () {
+                    MOD.paging.goToPage(pgIndex);
                 }
                 })(i);
         }
@@ -30,6 +24,5 @@ MOD.initPagingButtons = function(pageSize){
         pagingNavigationPlaceholder.appendChild(fragment);
     }
 
-    normalizePageSize();
     resetPagingNavigation(createFragment());
 };

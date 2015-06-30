@@ -1,4 +1,3 @@
-var MOD = MOD || {};
 
 MOD.items = [
     {
