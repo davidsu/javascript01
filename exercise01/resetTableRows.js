@@ -1,17 +1,11 @@
-MOD.resetTableRows = function(startId, endId) {
-    if(!startId && !endId){
-        startId = 0;
-        endId = MOD.paging.DEFAUL_PAGE_SIZE;
-    }
+MOD.resetTableRows = function(iterator) {
     var fragment = document.createDocumentFragment();
     var tbody = document.querySelector('tbody');
     var tblColumnOrder = getTableColumnOrder();
 
 
-    for (var currentId = startId; currentId < endId; currentId++) {
-        var item = MOD.itemsRepo.getItemById(currentId);
-
-        var tr = createRowFromObject(item);
+    while(iterator.hasNext()){
+        var tr = createRowFromObject(iterator.next());
         fragment.appendChild(tr);
     }
 

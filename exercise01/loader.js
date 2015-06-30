@@ -1,18 +1,21 @@
-var MOD = {};
-
-MOD.insertScript = function(path){
-    var script = document.createElement('script');
-    script.src = path;
-    document.body.appendChild(script);
+var MOD = {
+    setups: {}
 };
+
 
 (function(){
 
-    MOD.insertScript('items.js');
-    MOD.insertScript('itemsRepo.js');
-    MOD.insertScript('paging.js');
-    MOD.insertScript('resetPagingButtons.js');
-    MOD.insertScript('resetTableRows.js');
-    MOD.insertScript('utils.js');
-    MOD.insertScript('app.js');
+    function insertScript(path){
+        var script = document.createElement('script');
+        script.src = path;
+        document.body.appendChild(script);
+    }
+
+    insertScript('items.js');
+    insertScript('itemsRepo.js');
+    insertScript('paging.js');
+    //insertScript('resetPagingButtons.js');
+    insertScript('resetTableRows.js');
+    insertScript('utils.js');
+    insertScript('app.js');
 })();
