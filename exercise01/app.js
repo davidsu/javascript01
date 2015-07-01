@@ -1,9 +1,9 @@
-doresh('app.js',
+doresh('app',
     [
-    'paging.js',
-    'itemsRepo.js',
-    'items.js',
-    'resetTableRows.js'
+    'paging',
+    'itemsRepo',
+    'items',
+    'resetTableRows'
     ],
     function(paging, itemsRepo, items, resetTableRows) {
         paging.init();

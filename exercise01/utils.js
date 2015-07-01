@@ -5,6 +5,7 @@ doresh('utils.js',
             isNumeric: function (n) {
                 return !isNaN(parseFloat(n)) && isFinite(n);
             }
+
         }
     }
 );
