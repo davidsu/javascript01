@@ -1,6 +1,8 @@
 .table{
     margin:0 auto;
     font-size:2rem;
+    min-width: 80%;
+    border:1px solid black;
 }
 
 .paging{
@@ -10,6 +12,22 @@
     background-color: #d0ffd0;
 }
 
+.total-div{
+    margin:0 auto;
+    font-size:2rem;
+    min-width: 70%;
+    text-align: right;
+    display: table;
+}
+
+#total-placeholder{
+    margin-left:20px;
+}
 .input-label{
     font-size: 1.3rem;
+}
+
+td, th{
+    min-width: 15%;
+    text-align: center;
 }
