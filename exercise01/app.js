@@ -1,8 +1,16 @@
-window.onload = function() {
-    this.paging = this.setups.paging(this.itemsRepo, this.resetTableRows);
-    this.paging.init();
-    this.resetTableRows(this.itemsRepo.getIterator(0, this.paging.DEFAULT_PAGE_SIZE));
-    this.paging.resetPagingButtons();
-}.bind(MOD);
+doresh('app.js',
+    [
+    'paging.js',
+    'itemsRepo.js',
+    'items.js',
+    'resetTableRows.js'
+    ],
+    function(paging, itemsRepo, items, resetTableRows) {
+        paging.init();
+        resetTableRows(itemsRepo.getIterator(0, paging.DEFAULT_PAGE_SIZE));
+        paging.resetPagingButtons();
+    }
+);
+
 
 
