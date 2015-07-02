@@ -6,6 +6,26 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        <div class="popup-cart">
+            <div id="popup-cart-container">
+                <button id="close-popup-cart">x</button>
+                <table class="pop-up-cart-table">
+                    <thead>
+                        <tr id="cart-table-headers">
+                            <th data-field="id">ID</th>
+                            <th data-field="name">Name</th>
+                            <th data-field="qty">Qty</th>
+                            <th data-field="price">Price</th>
+                            <th data-field="total">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-popup-tbody">
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
         <table class="table">
             <thead>
                 <tr id="table-headers">
@@ -16,20 +36,23 @@
                     <th>Chart</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody">
 
             </tbody>
         </table>
         <div class="total-div">
+            <div class="clearfix">
+                <button id="show-cart-button">show cart</button>
+            </div>
             <label>Total</label>
             <label id="total-placeholder">0</label>
         </div>
         <div class="paging">
 
-                <label for="page-size" class="input-label">Page Size</label>
-                <input type="number" id="page-size"/>
-                <button id="set-page-size">Set</button>
-                <span id="paging-navigation-placeholder"></span>
+            <label for="page-size" class="input-label">Page Size</label>
+            <input type="number" id="page-size"/>
+            <button id="set-page-size">Set</button>
+            <span id="paging-navigation-placeholder"></span>
 
         </div>
         <script src="doresh.js"></script>

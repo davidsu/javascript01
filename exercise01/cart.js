@@ -2,10 +2,12 @@ doresh('cart',
     [],
     function(){
         var cart = {};
+
         var CartObj = function(obj){
             this.qty = 1;
             this.price = parseInt(obj.price.substr(1), 10);
             this.id = obj.id;
+            this.itemSrc = obj;
         };
 
         function addToCart(item){
@@ -61,7 +63,8 @@ doresh('cart',
             addToCart: addToCart,
             removeFromCart: removeFromCart,
             getTotal: getTotal,
-            getItemInChart: getItemInChart
+            getItemInChart: getItemInChart,
+            cart: cart
 
         };
     }

@@ -6,7 +6,7 @@ doresh('resetTableRows.js',
     function(cart) {
         return function (iterator) {
             var fragment = document.createDocumentFragment();
-            var tbody = document.querySelector('tbody');
+            var tbody = document.querySelector('#tbody');
             var tblColumnOrder = getTableColumnOrder();
 
 

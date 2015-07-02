@@ -3,7 +3,8 @@ doresh('app',
     'paging',
     'itemsRepo',
     'items',
-    'resetTableRows'
+    'resetTableRows',
+    'cartPopUp'
     ],
     function(paging, itemsRepo, items, resetTableRows) {
         paging.init();
