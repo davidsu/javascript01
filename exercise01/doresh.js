@@ -70,7 +70,7 @@ var doresh = new (function(){
     function loadCodeFile(filePath){
         var script = document.createElement('script');
         script.src = filePath;
-        document.body.appendChild(script);
+        document.head.appendChild(script);
     }
 
     function resolve(){

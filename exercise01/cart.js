@@ -4,8 +4,7 @@ doresh('cart',
         var cart = {};
         var CartObj = function(obj){
             this.qty = 1;
-            this.obj = obj;
-            this.price = parseInt(obj.price.substr(1));
+            this.price = parseInt(obj.price.substr(1), 10);
             this.id = obj.id;
         };
 
@@ -28,7 +27,7 @@ doresh('cart',
             var success = true;
             if(!cart[item.id]){
                 success = false
-            }else if(cart[item.id].qty==0){
+            }else if(cart[item.id].qty == 0){
                 delete cart[item.id];
             }else{
                 cart[item.id].qty--;

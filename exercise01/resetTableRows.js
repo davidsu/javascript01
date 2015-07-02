@@ -1,5 +1,8 @@
 doresh('resetTableRows.js',
-    ['cart'],
+    [
+        'cart',
+        'pubsub'
+    ],
     function(cart) {
         return function (iterator) {
             var fragment = document.createDocumentFragment();
