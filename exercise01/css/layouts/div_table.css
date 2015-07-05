@@ -1,0 +1,33 @@
+
+.table {
+    display: table;
+    max-width: 800px;
+    width: 80%;
+    border: 2px solid black;
+    border-bottom: 0;
+    margin-top: 1.5em;
+
+}
+
+.heading {
+    display: table-row;
+    font-weight: bold;
+    text-align: center;
+}
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+    border-bottom: 2px solid black;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-doresh('pubsub',
+doresh('./js/pubsub',
     [],
     function (){
         var storedEvents = {};

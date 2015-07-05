@@ -1,9 +1,5 @@
-.table{
-    margin:0 auto;
-    font-size:2rem;
-    min-width: 80%;
-    border:1px solid black;
-}
+@import 'resets.css';
+@import './layouts/div_table.css';
 
 .paging{
     text-align:center;
@@ -67,11 +63,3 @@
     color:red;
 }
 
-td, th{
-    min-width: 15%;
-    text-align: center;
-}
-
-body{
-    margin:0;
-}

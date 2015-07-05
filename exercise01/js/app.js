@@ -1,10 +1,10 @@
-doresh('app',
+doresh('./js/app',
     [
-    'paging',
-    'itemsRepo',
-    'items',
-    'resetTableRows',
-    'cartPopUp'
+    './js/paging',
+    './js/itemsRepo',
+    './js/items',
+    './js/resetTableRows',
+    './js/cartPopUp'
     ],
     function(paging, itemsRepo, items, resetTableRows) {
         paging.init();

@@ -1,9 +1,9 @@
-doresh('paging.js',
+doresh('./js/paging.js',
     [
-        'itemsRepo.js',
-        'resetTableRows.js',
-        'utils.js',
-        'pubsub'
+        './js/itemsRepo.js',
+        './js/resetTableRows.js',
+        './js/utils.js',
+        './js/pubsub'
     ], function (itemsRepo, resetTableRows, utils, pubsub) {
 
         var DEFAULT_PAGE_SIZE = 20;

@@ -3,7 +3,7 @@
     <head lang="en">
         <meta charset="UTF-8">
         <title></title>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
         <div class="popup-cart">
@@ -26,20 +26,18 @@
             </div>
 
         </div>
-        <table class="table">
-            <thead>
-                <tr id="table-headers">
-                    <th data-field="id">ID</th>
-                    <th data-field="name">Name</th>
-                    <th data-field="desc">Description</th>
-                    <th data-field="price">Price</th>
-                    <th>Chart</th>
-                </tr>
-            </thead>
-            <tbody id="tbody">
+        <div class="table">
+            <div class="heading">
+                    <div class="cell" data-field="id">ID</div>
+                    <div class="cell" data-field="name">Name</div>
+                    <div class="cell" data-field="desc">Description</div>
+                    <div class="cell" data-field="price">Price</div>
+                    <div class="cell">Chart</div>
+            </div>
+            <div id="tbody">
 
-            </tbody>
-        </table>
+            </div>
+        </div>
         <div class="total-div">
             <div class="clearfix">
                 <button id="show-cart-button">show cart</button>
@@ -55,6 +53,6 @@
             <span id="paging-navigation-placeholder"></span>
 
         </div>
-        <script src="doresh.js"></script>
+        <script src="js/doresh.js" data-app="./js/app.js"></script>
     </body>
 </html>

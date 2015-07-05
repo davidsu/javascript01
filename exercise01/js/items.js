@@ -1,5 +1,5 @@
 
-doresh('items.js',
+doresh('./js/items.js',
     [],
     function() {
         return [

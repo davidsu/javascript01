@@ -1,5 +1,5 @@
-doresh('itemsRepo.js',
-    ['items.js'],
+doresh('./js/itemsRepo.js',
+    ['./js/items.js'],
     function(items) {
         return {
             getItemsCount: function () {

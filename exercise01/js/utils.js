@@ -1,4 +1,4 @@
-doresh('utils.js',
+doresh('./js/utils.js',
     [],
     function() {
         return {

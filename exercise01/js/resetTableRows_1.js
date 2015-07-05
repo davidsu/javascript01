@@ -1,7 +1,7 @@
-doresh('resetTableRows.js',
+doresh('./js/resetTableRows.js',
     [
-        'cart',
-        'pubsub'
+        './js/cart',
+        './js/pubsub'
     ],
     function(cart) {
         return function (iterator) {

@@ -1,5 +1,5 @@
-doresh('cartPopUp',
-    ['cart'],
+doresh('./js/cartPopUp',
+    ['./js/cart'],
     function(cart){
         var showCartButton = document.querySelector('#show-cart-button');
         var popUp = document.querySelector('.popup-cart');
