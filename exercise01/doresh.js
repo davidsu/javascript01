@@ -1,11 +1,10 @@
-var doresh = new (function(){
-    var self = this;
-    this.executionDrishot = {};
+var doresh = (function(){
+    var executionDrishot = {};
 
     function printExecutionDrishot(){
         var result = '';
-        for(var v in self.executionDrishot){
-            result+= self.executionDrishot[v].toString()+'\n';
+        for(var v in executionDrishot){
+            result+= executionDrishot[v].toString()+'\n';
         }
         return result;
     }
@@ -45,18 +44,18 @@ var doresh = new (function(){
         var depsAreInitialized = true;
 
         codeFile.dependencies.forEach(function(key){
-            if(!self.executionDrishot[key]){
+            if(!executionDrishot[key]){
                 loadCodeFile(key);
                 madeProgress = true;
             }
-            if(!self.executionDrishot[key] || !self.executionDrishot[key].initialized){
+            if(!executionDrishot[key] || !executionDrishot[key].initialized){
                 depsAreInitialized = false;
             }
         });
 
         if(depsAreInitialized){
             var parameters = codeFile.dependencies.map(function(key){
-                return self.executionDrishot[key].returnedValue;
+                return executionDrishot[key].returnedValue;
             });
             codeFile.initialized = true;
             codeFile.returnedValue = codeFile.execute.apply(null, parameters);
@@ -76,22 +75,21 @@ var doresh = new (function(){
     function resolve(){
         var didAtLeastOneStep = false,
             codeFile;
-        for(var codeFileKey in self.executionDrishot){
-            codeFile = self.executionDrishot[codeFileKey];
+        for(var codeFileKey in executionDrishot){
+            codeFile = executionDrishot[codeFileKey];
             if(!codeFile.initialized && tryToMakeProgress(codeFile)){
                 didAtLeastOneStep = true;
             }
         }
         return didAtLeastOneStep;
     }
-    resolve.bind(this);
 
     function isFullyResolved(){
-        if(!self.executionDrishot['app.js']){
+        if(!executionDrishot['app.js']){
             return false;
         }
-        for(var key in self.executionDrishot){
-            if(!self.executionDrishot[key].initialized){
+        for(var key in executionDrishot){
+            if(!executionDrishot[key].initialized){
                 return false;
             }
         }
@@ -99,7 +97,7 @@ var doresh = new (function(){
     }
 
     function resolveAsync(sleepTime, noProgressCount, count){
-       // console.log(count++);
+        // console.log(count++);
 
         setTimeout(function verifyResolves() {
             if(resolve()){
@@ -121,12 +119,11 @@ var doresh = new (function(){
         drishot = drishot.map(function(item){
             return normalizeFileName(item);
         });
-        if(self.executionDrishot[filePath]){
+        if(executionDrishot[filePath]){
             return;
         }
-        self.executionDrishot[filePath] = new DrishObj(drishot, callback, filePath);
+        executionDrishot[filePath] = new DrishObj(drishot, callback, filePath);
     }
-    doresh.bind(this);
 
     document.addEventListener("DOMContentLoaded", function() {
         loadCodeFile('app.js');

@@ -28,7 +28,7 @@
 }
 
 .popup-cart{
-    position:absolute;
+    position:fixed;
     background-color: rgba(0, 0, 0, .6);
     min-width: 100%;
     min-height: 100%;
@@ -70,4 +70,8 @@
 td, th{
     min-width: 15%;
     text-align: center;
+}
+
+body{
+    margin:0;
 }

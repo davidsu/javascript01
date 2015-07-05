@@ -15,6 +15,7 @@ doresh('resetTableRows.js',
                 fragment.appendChild(tr);
             }
 
+            tbody.innerHTML = "";
             tbody.appendChild(fragment);
 
             function getTableColumnOrder() {
