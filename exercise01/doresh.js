@@ -1,5 +1,6 @@
 var doresh = (function(){
     var executionDrishot = {};
+    var isCodeFileLoaded = {};
 
     function printExecutionDrishot(){
         var result = '';
@@ -44,7 +45,7 @@ var doresh = (function(){
         var depsAreInitialized = true;
 
         codeFile.dependencies.forEach(function(key){
-            if(!executionDrishot[key]){
+            if(!executionDrishot[key] && !isCodeFileLoaded[key]){
                 loadCodeFile(key);
                 madeProgress = true;
             }
@@ -58,7 +59,6 @@ var doresh = (function(){
                 return executionDrishot[key].returnedValue;
             });
             codeFile.initialized = true;
-            console.log(codeFile.filePath);
             codeFile.returnedValue = codeFile.execute.apply(null, parameters);
             madeProgress = true;
         }
@@ -68,6 +68,7 @@ var doresh = (function(){
     }
 
     function loadCodeFile(filePath){
+        isCodeFileLoaded[filePath] = true;
         var script = document.createElement('script');
         script.src = filePath;
         document.head.appendChild(script);
