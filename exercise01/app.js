@@ -1,14 +1,14 @@
-doresh('app',
+doresh('app.js',
     [
-    'paging',
-    'itemsRepo',
-    'items',
-    'resetTableRows',
-    'cartPopUp'
+    'paging.js',
+    'itemsRepo.js',
+    'items.js',
+    'mainTblManager.js',
+    'cartPopUp.js'
     ],
-    function(paging, itemsRepo, items, resetTableRows) {
+    function(paging, itemsRepo, items, mainTblManager) {
         paging.init();
-        resetTableRows.reset(itemsRepo.getIterator(0, paging.DEFAULT_PAGE_SIZE));
+        mainTblManager.init(itemsRepo.getIterator(0, paging.DEFAULT_PAGE_SIZE));
         paging.resetPagingButtons();
     }
 );

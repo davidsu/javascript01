@@ -1,4 +1,4 @@
-doresh('resetTableRows.js',
+doresh('mainTblManager.js',
     [
         'cart',
         'functionalElements',
@@ -17,14 +17,19 @@ doresh('resetTableRows.js',
             prepareTblWithHeaders: functional.fcompose(
                 appendHeader,
                 tblCreator.getDetachedPlaceholder
+            ),
+            resetTotal: functional.fcompose(
+                domMainTblHelper.resetTotal,
+                cart.getTotal
             )
         };
 
         var cartEvent = {
             minus: function (obj){
                 return function(){
-                    resetTotal();
-                    return cart.removeFromCart(obj).qty.toString();
+                    var returnval = cart.removeFromCart(obj).qty.toString();
+                    composed.resetTotal();
+                    return returnval;
                 }
             },
             plus: function (obj){
@@ -34,7 +39,7 @@ doresh('resetTableRows.js',
                         alert("can't sell you more or you'll get addicted!");
                         return;
                     }
-                    resetTotal();
+                    composed.resetTotal();
                     return cartInfo.qty.toString();
                 }
             }
@@ -83,8 +88,6 @@ doresh('resetTableRows.js',
             return domMainTblHelper.createCartCell(plusButton, minusButton, labelQty);
         }
 
-
-
         function appendTblBody(placeholder, iterator) {
             while (iterator.hasNext()) {
                 domMainTblHelper.insertChildToParent(
@@ -102,70 +105,13 @@ doresh('resetTableRows.js',
             )(composed.prepareTblWithHeaders(), iterator);
         }
 
-
-//**************************************************************************************************************************************
-        function resetTotal() {
-            var totalPlaceHolder = document.querySelector('#total-placeholder');
-            totalPlaceHolder.innerHTML = cart.getTotal();
+        function init(iterator){
+            reset(iterator);
         }
 
-
-
-
-
-
-
-        function createPlusMinusCell(obj) {
-            var td = createTd('');
-
-            var cartItem = cart.getItemInChart(obj.id);
-
-            var labelQty = document.createElement('span');
-            labelQty.innerHTML = cartItem ? cartItem.qty : 0;
-            labelQty.style.margin = 0;
-
-            var btnPlus = createButton('+');
-            var btnMinus = createButton('-');
-
-            btnPlus.setAttribute('data-limit', obj.limit.toString());
-
-            btnPlus.onclick = function (event) {
-                var cartInfo = cart.addToCart(obj);
-                if (!cartInfo.success) {
-                    alert("can't sell you more or you'll get addicted!");
-                    return;
-                }
-                labelQty.innerHTML = cartInfo.qty.toString();
-                resetTotal();
-            };
-
-            btnMinus.onclick = function () {
-                labelQty.innerHTML = cart.removeFromCart(obj).qty.toString();
-                resetTotal();
-            };
-
-            td.appendChild(btnMinus);
-            td.appendChild(btnPlus);
-            td.appendChild(labelQty);
-
-            return td;
-        }
-
-        function createButton(innerText) {
-            var btn = document.createElement('button');
-            btn.appendChild(document.createTextNode(innerText));
-            return btn;
-        }
-
-        function createTd(innerHtml) {
-            var td = document.createElement('td');
-            td.innerHTML = innerHtml;
-            return td;
-        }
-
-//**************************************************************************************************************************************
         return {
-            reset: reset
+            reset: reset,
+            init: init
         }
     }
 );

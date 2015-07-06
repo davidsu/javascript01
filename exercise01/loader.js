@@ -15,7 +15,7 @@ var MOD = {
     insertScript('itemsRepo.js');
     insertScript('paging.js');
     //insertScript('resetPagingButtons.js');
-    insertScript('resetTableRows.js');
+    insertScript('mainTblManager.js');
     insertScript('utils.js');
     insertScript('app.js');
 })();

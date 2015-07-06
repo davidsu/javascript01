@@ -1,9 +1,10 @@
 doresh('./dom/mainTbl',
       [
             './dom/utils',
-          './dom/tblCreator'
+          './dom/tblCreator',
+          './dom/total'
       ],
-      function (domUtils, tblCreator) {
+      function (domUtils, tblCreator, total) {
             function reset(newlyBuiltTable){
                   var tblPlaceHolder = document.querySelector('.table.main');
                   tblPlaceHolder.innerHTML = '';
@@ -42,7 +43,8 @@ doresh('./dom/mainTbl',
                   insertChildToParent: domUtils.insertChildToParent,
                   createCartLabel: createCartLabel,
                   createCartAddRemoveButton: createCartAddRemoveButton,
-                  createCartCell: createCartCell
+                  createCartCell: createCartCell,
+                  resetTotal: total.resetTotal
             };
       }
 );
