@@ -3,11 +3,12 @@ doresh('mainTblManager.js',
         'cart',
         'functionalElements',
         './dom/tblCreator',
-        './dom/mainTbl'
+        './dom/mainTbl',
+        'tblUtils.js'
     ],
-    function (cart, functional, tblCreator, domMainTblHelper) {
+    function (cart, functional, tblCreator, domMainTblHelper, tblUtils) {
         var headers = ['id', 'name', 'desc', 'price', 'cart'];
-        var headersRow = createHeadersRow();
+        var headersRow = tblUtils.createHeadersRow(headers);
 
         var composed = {
             createRow: functional.fcompose(
@@ -49,21 +50,9 @@ doresh('mainTblManager.js',
             return domMainTblHelper.insertChildToParent(placeholder, headersRow);
         }
 
-        function createHeaderCells() {
-            var headerCells = [];
-            headers.forEach(function (column) {
-                headerCells.push(tblCreator.createHeaderCell(column));
-            });
-            return headerCells;
-        }
 
-        function createHeadersRow() {
-            var rowAfterChildren = functional.fcompose(
-                tblCreator.createHeadersRow,
-                createHeaderCells
-            );
-            return rowAfterChildren();
-        }
+
+
 
         function createCells(obj) {
             var result = [];

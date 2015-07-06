@@ -59,11 +59,33 @@ doresh('cart',
 
         }
 
+        function getIterator(){
+            var cartItemsArray = [];
+            var i = 0;
+            for(var key in cart){
+                cartItemsArray.push(cart[key]);
+            }
+
+            function hasNext(){
+                return i < cartItemsArray.length;
+            }
+
+            function next(){
+                return cartItemsArray[i++];
+            }
+
+            return{
+                hasNext: hasNext,
+                next: next
+            }
+        }
+
         return {
             addToCart: addToCart,
             removeFromCart: removeFromCart,
             getTotal: getTotal,
             getItemInChart: getItemInChart,
+            getIterator: getIterator,
             cart: cart
 
         };

@@ -8,6 +8,7 @@ doresh('paging.js',
 
         var DEFAULT_PAGE_SIZE = 20;
 
+
         document.addEventListener('goToPage', function(e){
             goToPage(e.detail.pageNum);
         });

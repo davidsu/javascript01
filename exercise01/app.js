@@ -4,7 +4,7 @@ doresh('app.js',
     'itemsRepo.js',
     'items.js',
     'mainTblManager.js',
-    'cartPopUp.js'
+    'cartPopUpManager.js'
     ],
     function(paging, itemsRepo, items, mainTblManager) {
         paging.init();
