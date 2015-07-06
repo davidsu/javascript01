@@ -58,6 +58,7 @@ var doresh = (function(){
                 return executionDrishot[key].returnedValue;
             });
             codeFile.initialized = true;
+            console.log(codeFile.filePath);
             codeFile.returnedValue = codeFile.execute.apply(null, parameters);
             madeProgress = true;
         }
@@ -125,22 +126,8 @@ var doresh = (function(){
         executionDrishot[filePath] = new DrishObj(drishot, callback, filePath);
     }
 
-    function getAppScriptPath(){
-        var scripts = document.querySelectorAll('script'),
-            doreshScriptElement, dataAppPath;
-        for(var i = 0; i<scripts.length; i++){
-            if(utils.stringEndsWith(scripts[i].getAttribute('src'), 'doresh.js')){
-                doreshScriptElement = scripts[i];
-                break;
-            }
-        }
-        dataAppPath = doreshScriptElement.getAttribute('data-app');
-        return dataAppPath || './js/app.js';
-    }
     document.addEventListener("DOMContentLoaded", function() {
-
-        var appScriptPath = getAppScriptPath();
-        loadCodeFile(appScriptPath);
+        loadCodeFile('app.js');
         resolveAsync(20, 0, 0);
     });
     return doresh;

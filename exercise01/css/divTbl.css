@@ -4,10 +4,10 @@
     max-width: 800px;
     width: 80%;
     border: 2px solid black;
-    border-bottom: 0;
-    margin-top: 1.5em;
-
+    margin: 1.5em auto 0;
+    font-size: 1.5rem;
 }
+
 
 .heading {
     display: table-row;
@@ -20,13 +20,14 @@
 }
 
 .cell {
+    text-align: center;
     display: table-cell;
-    border-bottom: 2px solid black;
     padding-left: .5rem;
     padding-right: .5rem;
 }
-
-
+.row:nth-child(2n){
+    background-color: #d0ffd0;
+}
 
 
 

@@ -1,9 +1,9 @@
-doresh('./js/paging.js',
+doresh('paging.js',
     [
-        './js/itemsRepo.js',
-        './js/resetTableRows.js',
-        './js/utils.js',
-        './js/pubsub'
+        'itemsRepo.js',
+        'resetTableRows.js',
+        'utils.js',
+        'pubsub'
     ], function (itemsRepo, resetTableRows, utils, pubsub) {
 
         var DEFAULT_PAGE_SIZE = 20;
@@ -15,7 +15,7 @@ doresh('./js/paging.js',
             var tbody = document.querySelector('tbody');
             tbody.innerHTML = "";
             var pageSize = getUserDefinedPageSize();
-            resetTableRows(itemsRepo.getIterator(pageNum * pageSize, pageSize));
+            resetTableRows.reset(itemsRepo.getIterator(pageNum * pageSize, pageSize));
         }
 
         function createButtonsNavigationFragment() {

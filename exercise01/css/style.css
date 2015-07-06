@@ -1,6 +1,5 @@
-@import 'resets.css';
-@import './layouts/div_table.css';
-
+@import 'divTbl.css';
+@import 'layouts.css';
 .paging{
     text-align:center;
     font-size: 2rem;
@@ -63,3 +62,11 @@
     color:red;
 }
 
+td, th{
+    min-width: 15%;
+    text-align: center;
+}
+
+body{
+    margin:0;
+}
