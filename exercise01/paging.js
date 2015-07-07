@@ -13,7 +13,7 @@ doresh('paging.js',
             goToPage(e.detail.pageNum);
         });
         function goToPage(pageNum) {
-            var tbody = document.querySelector('tbody');
+            var tbody = document.querySelector('.table.pop-up-cart-table');
             tbody.innerHTML = "";
             var pageSize = getUserDefinedPageSize();
             mainTblManager.reset(itemsRepo.getIterator(pageNum * pageSize, pageSize));

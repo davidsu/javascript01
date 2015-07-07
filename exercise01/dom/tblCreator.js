@@ -23,6 +23,9 @@ doresh('./dom/tblCreator',
             }
 
             function createCell(strContent, strClass){
+                  if(!strClass){
+                        strClass = '';
+                  }
                   var result = createElement('div', 'cell '+strClass);
                   result.innerHTML = strContent;
                   return result;

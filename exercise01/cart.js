@@ -80,12 +80,17 @@ doresh('cart',
             }
         }
 
+        function isEmpty(){
+            return cart.length === 0;
+        }
+
         return {
             addToCart: addToCart,
             removeFromCart: removeFromCart,
             getTotal: getTotal,
             getItemInChart: getItemInChart,
             getIterator: getIterator,
+            isEmpty: isEmpty,
             cart: cart
 
         };

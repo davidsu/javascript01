@@ -1,9 +1,9 @@
 doresh('mainTblManager.js',
     [
-        'cart',
-        'functionalElements',
-        './dom/tblCreator',
-        './dom/mainTbl',
+        'cart.js',
+        'functionalElements.js',
+        './dom/tblCreator.js',
+        './dom/mainTbl.js',
         'tblUtils.js'
     ],
     function (cart, functional, tblCreator, domMainTblHelper, tblUtils) {
@@ -49,10 +49,6 @@ doresh('mainTblManager.js',
         function appendHeader(placeholder) {
             return domMainTblHelper.insertChildToParent(placeholder, headersRow);
         }
-
-
-
-
 
         function createCells(obj) {
             var result = [];
