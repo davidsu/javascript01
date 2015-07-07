@@ -1,6 +1,6 @@
 doresh('app.js',
     [
-    'paging.js',
+    'pagingManager.js',
     'itemsRepo.js',
     'items.js',
     'mainTblManager.js',

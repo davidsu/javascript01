@@ -1,4 +1,4 @@
-doresh('paging.js',
+doresh('pagingManager.js',
     [
         'itemsRepo.js',
         'mainTblManager.js',

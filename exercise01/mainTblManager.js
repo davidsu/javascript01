@@ -2,22 +2,21 @@ doresh('mainTblManager.js',
     [
         'cart.js',
         'functionalElements.js',
-        './dom/tblCreator.js',
         './dom/mainTbl.js',
         'tblUtils.js'
     ],
-    function (cart, functional, tblCreator, domMainTblHelper, tblUtils) {
+    function (cart, functional, domMainTblHelper, tblUtils) {
         var headers = ['id', 'name', 'desc', 'price', 'cart'];
         var headersRow = tblUtils.createHeadersRow(headers);
 
         var composed = {
             createRow: functional.fcompose(
-                tblCreator.createRow,
+                domMainTblHelper.createRow,
                 createCells
             ),
             prepareTblWithHeaders: functional.fcompose(
                 appendHeader,
-                tblCreator.getDetachedPlaceholder
+                domMainTblHelper.getDetachedPlaceholder
             ),
             resetTotal: functional.fcompose(
                 domMainTblHelper.resetTotal,
@@ -58,7 +57,7 @@ doresh('mainTblManager.js',
                     result.push(createCartPlusMinusCell(obj));
 
                 } else {
-                    result.push(tblCreator.createCell(obj[key], key));
+                    result.push(domMainTblHelper.createCell(obj[key], key));
                 }
             }
             return result;
