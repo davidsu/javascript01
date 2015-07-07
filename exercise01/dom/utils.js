@@ -1,4 +1,4 @@
-doresh('./dom/utils',
+doresh('./dom/utils.js',
       [],
       function () {
             function createEmptyFragment(){

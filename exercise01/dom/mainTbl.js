@@ -1,8 +1,8 @@
-doresh('./dom/mainTbl',
+doresh('./dom/mainTbl.js',
       [
-            './dom/utils',
-          './dom/tblCreator',
-          './dom/total'
+            './dom/utils.js',
+          './dom/tblCreator.js',
+          './dom/total.js'
       ],
       function (domUtils, tblCreator, total) {
             function reset(newlyBuiltTable){

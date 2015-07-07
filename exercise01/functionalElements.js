@@ -1,7 +1,7 @@
 /**
  * Created by davidsusskind on 7/6/15.
  */
-doresh('functionalElements',
+doresh('functionalElements.js',
       [],
       function () {
             return{

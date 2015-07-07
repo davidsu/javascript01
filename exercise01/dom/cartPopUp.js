@@ -1,7 +1,7 @@
 doresh(
     './dom/cartPopUp.js',
     [
-        './dom/utils'
+        './dom/utils.js'
     ],
     function(domUtils){
         var popUp = document.querySelector('.popup-cart');

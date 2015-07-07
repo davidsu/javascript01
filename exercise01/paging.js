@@ -3,7 +3,7 @@ doresh('paging.js',
         'itemsRepo.js',
         'mainTblManager.js',
         'utils.js',
-        'pubsub'
+        'pubsub.js'
     ], function (itemsRepo, mainTblManager, utils, pubsub) {
 
         var DEFAULT_PAGE_SIZE = 20;

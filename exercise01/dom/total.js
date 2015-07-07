@@ -1,5 +1,5 @@
 doresh(
-    './dom/total',
+    './dom/total.js',
     [],
     function(){
         function resetTotal(newTotal){

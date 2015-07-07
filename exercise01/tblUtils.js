@@ -1,7 +1,7 @@
 doresh('tblUtils.js',
     [
-        './dom/tblCreator',
-        'functionalElements',
+        './dom/tblCreator.js',
+        'functionalElements.js',
     ],
     function(tblCreator, functional){
         function createHeaderCells(headers) {

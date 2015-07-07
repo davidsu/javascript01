@@ -1,6 +1,6 @@
 doresh('cartPopUpManager.js',
     [
-        'cart',
+        'cart.js',
         './dom/cartPopUp.js',
         './dom/tblCreator.js',
         'tblUtils.js',
