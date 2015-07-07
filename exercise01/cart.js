@@ -81,7 +81,7 @@ doresh('cart',
         }
 
         function isEmpty(){
-            return cart.length === 0;
+            return Object.getOwnPropertyNames(cart).length === 0;
         }
 
         return {

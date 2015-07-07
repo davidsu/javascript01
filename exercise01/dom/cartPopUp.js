@@ -20,12 +20,26 @@ doresh(
 
 
 
+        function setShowCartListener(funcCartIsEmpty, doBeforePopping) {
+            var showCartButton = document.querySelector('#show-cart-button');
+            showCartButton.addEventListener('click', function () {
+                if (funcCartIsEmpty()) {
+                    alert('cart is empty');
+                    return;
+                }
+                doBeforePopping();
+                popUp.style.visibility = 'visible';
+            });
+        }
+
+
 
 
         init();
         return {
             reset: reset,
-            insertChildToParent: domUtils.insertChildToParent
+            insertChildToParent: domUtils.insertChildToParent,
+            setShowCartListener: setShowCartListener
         };
     }
 );

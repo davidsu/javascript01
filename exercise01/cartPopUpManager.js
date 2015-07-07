@@ -11,7 +11,6 @@ doresh('cartPopUpManager.js',
         var headers = ['id', 'name', 'qty', 'price', 'total'];
         var headersRow = tblUtils.createHeadersRow(headers);
 
-
         var composed = {
             createRow: functional.fcompose(
                 tblCreator.createRow,
@@ -40,20 +39,6 @@ doresh('cartPopUpManager.js',
             return result;
         }
 
-
-
-
-
-        var popUp = document.querySelector('.popup-cart');
-        var showCartButton = document.querySelector('#show-cart-button');
-        showCartButton.addEventListener('click', function(){
-            if(reset()) {
-                popUp.style.visibility = 'visible';
-            }
-        });
-
-
-
         function appendTblBody(placeholder, iterator){
             while(iterator.hasNext()){
                 domCartPopUp.insertChildToParent(
@@ -65,7 +50,6 @@ doresh('cartPopUpManager.js',
         }
 
         function reset(){
-
             functional.fcompose(
                 domCartPopUp.reset,
                 appendTblBody
@@ -73,6 +57,11 @@ doresh('cartPopUpManager.js',
             return true;
         }
 
+        function init(){
+            domCartPopUp.setShowCartListener(cart.isEmpty, reset);
+        }
+
+        init();
 
         return{
             reset: reset
