@@ -1,8 +1,8 @@
 
 doresh('items.js',
-    [],
-    function() {
-        return [
+    ['itemTypes.js'],
+    function(itemTypes) {
+        var items =  [
             {
                 "id": 0,
                 "name": "Laurel",
@@ -804,5 +804,25 @@ doresh('items.js',
                 "limit": 6
             }
         ];
+        var itemInstances = [];
+
+
+
+        for(var i = 0; i<items.length; i++){
+            if(i%5==0){
+                itemInstances.push(new itemTypes.OnSaleItem(items[i]));
+                console.log(itemInstances[i].price);
+            }else if(i%7==0){
+                itemInstances.push(new itemTypes.OutOfStockItem(items[i]));
+            }else if(i%3==0){
+                itemInstances.push(new itemTypes.NewItem(items[i]));
+            }else{
+                itemInstances.push(new itemTypes.BaseItem(items[i]));
+            }
+           // itemInstances.push(new BaseItem(items[i]));
+
+        }
+
+        return itemInstances;
     }
 );

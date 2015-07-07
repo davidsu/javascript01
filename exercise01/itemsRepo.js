@@ -1,6 +1,8 @@
 doresh('itemsRepo.js',
     ['items.js'],
     function(items) {
+
+
         return {
             getItemsCount: function () {
                 return items.length;
