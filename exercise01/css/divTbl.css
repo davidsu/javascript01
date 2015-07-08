@@ -6,6 +6,7 @@
     border: 2px solid black;
     margin: 1.5em auto 8rem;
     font-size: 1.5rem;
+    position: relative;
 }
 
 
@@ -17,6 +18,55 @@
 
 .row {
     display: table-row;
+    position: relative;
+}
+
+.table.main .OnSaleItem::after{
+    content: "sale";
+    position: absolute;
+    left: -4rem;
+    color:#4080ff;
+}
+.table.main .OnSaleItem{
+    background-color: rgba(64, 128, 255, .2);
+}
+
+.table.main .NewItem::after{
+    content: "NEW";
+    position: absolute;
+    left: -4rem;
+    color: #ff08d7;
+}
+.table.main .NewItem{
+    background-color: rgba(255, 8, 71, .1);
+}
+
+.table.main .BaseItem::after{
+    content: "base item";
+    font-size: 0.8rem;
+    position: absolute;
+    left: -4rem;
+    color: #4c5137;
+}
+.BaseItem{
+    background-color: #fbffdf;
+}
+
+.table.main .OutOfStockItem::after{
+    content: "Out of stock";
+    position: absolute;
+    left: -8rem;
+    color:#ff0000;
+}
+.table.main .OutOfStockItem{
+    color:#ff0000;
+    text-decoration: line-through;
+}
+.table.main .OutOfStockItem div{
+    color: #9d9d9d;
+}
+.table.main .OutOfStockItem button{
+    visibility: hidden;
 }
 
 .cell {
@@ -25,9 +75,7 @@
     padding-left: .5rem;
     padding-right: .5rem;
 }
-.row:nth-child(2n){
-    background-color: #d0ffd0;
-}
+
 
 
 

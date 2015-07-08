@@ -13,10 +13,10 @@ doresh('itemsRepo.js',
 
                 function init() {
                     if (startIdx < 0 || maxSequenceSize <= 0) {
-                        throw {
-                            message: "startId = " + startIdx + "sequenceSize = " + maxSequenceSize +
+                        throw new RangeError(
+                            "startId = " + startIdx + "sequenceSize = " + maxSequenceSize +
                             ". They must both be positive"
-                        }
+                        );
                     }
                     currIdx = startIdx;
                     endIdx = startIdx + maxSequenceSize - 1;
@@ -31,9 +31,7 @@ doresh('itemsRepo.js',
 
                 function next() {
                     if (!hasNext()) {
-                        throw{
-                            message: "iterator passed last"
-                        }
+                        throw RangeError("iterator passed last");
                     }
                     return items[currIdx++];
                 }

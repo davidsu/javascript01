@@ -16,7 +16,7 @@ doresh('pubsub.js',
                 }
             }
             if(storedEvents[eventName].subscribers.indexOf(callback) !== -1){
-                throw "attemped to re-subscribe listener to event "+ eventName;
+                throw new ReferenceError("attemped to re-subscribe listener to event "+ eventName);
             }
             storedEvents[eventName].subscribers.push(callback);
 
