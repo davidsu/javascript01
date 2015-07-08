@@ -3,9 +3,10 @@ doresh('mainTblManager.js',
         'cart.js',
         'functionalElements.js',
         './dom/mainTbl.js',
-        'tblUtils.js'
+        'tblUtils.js',
+        'itemTypes.js'
     ],
-    function (cart, functional, domMainTblHelper, tblUtils) {
+    function (cart, functional, domMainTblHelper, tblUtils, itemTypes) {
         var headers = ['id', 'name', 'desc', 'price', 'cart'];
         var headersRow = tblUtils.createHeadersRow(headers);
 
@@ -53,12 +54,19 @@ doresh('mainTblManager.js',
             var result = [];
             for(var i = 0; i<headers.length; i++){
                 var key = headers[i];
-                if (key === 'cart') {
-                    result.push(createCartPlusMinusCell(obj));
-
-                } else {
-                    result.push(domMainTblHelper.createCell(obj[key], key));
+                var cell = null;
+                switch(key){
+                    case 'cart':
+                        cell = createCartPlusMinusCell(obj);
+                        break;
+                    case 'price':
+                        cell = domMainTblHelper.createCell('$'+obj.getPrice(), key);
+                        break;
+                    default:
+                        cell = domMainTblHelper.createCell(obj[key], key);
                 }
+                result.push(cell);
+
             }
             return result;
         }

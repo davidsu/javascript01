@@ -819,8 +819,7 @@ doresh('items.js',
             }else{
                 itemInstances.push(new itemTypes.BaseItem(items[i]));
             }
-           // itemInstances.push(new BaseItem(items[i]));
-
+            console.log(itemInstances[i].constructor);
         }
 
         return itemInstances;

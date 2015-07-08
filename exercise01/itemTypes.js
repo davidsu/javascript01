@@ -15,18 +15,35 @@ doresh('itemTypes.js',
             this.limit = item.limit;
         }
 
+        BaseItem.prototype.getPrice = function(){
+          return parseInt(this.price.substring(1));
+        };
+
+
         function OnSaleItem(item) {
             if (!(this instanceof OnSaleItem)) {
                 return new OnSaleItem(item);
             }
             BaseItem.apply(this, arguments);
+            this.discount = Math.random();
         }
+
+        OnSaleItem.prototype.getFullPrice = function(){
+            return BaseItem.getPrice.apply(this);
+        };
+
+        OnSaleItem.prototype.getPrice = function(){
+            var fullPrice = this.getFullPrice();
+            return fullPrice - fullPrice*this.discount;
+        };
+
 
         function OutOfStockItem(item) {
             if (!(this instanceof OutOfStockItem)) {
                 return new OutOfStockItem(item);
             }
             BaseItem.apply(this, arguments);
+            this.limit = 0;
         }
 
         function NewItem(item) {
@@ -35,6 +52,8 @@ doresh('itemTypes.js',
             }
             BaseItem.apply(this, arguments);
         }
+
+
         utils.inherit(OnSaleItem, BaseItem);
         utils.inherit(OutOfStockItem, BaseItem);
         utils.inherit(NewItem, BaseItem);
