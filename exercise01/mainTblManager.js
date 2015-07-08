@@ -4,21 +4,14 @@ doresh('mainTblManager.js',
         'functionalElements.js',
         './dom/mainTbl.js',
         'tblUtils.js',
-        'itemTypes.js'
+        'itemTypes.js',
+        'utils.js'
     ],
-    function (cart, functional, domMainTblHelper, tblUtils, itemTypes) {
+    function (cart, functional, domMainTblHelper, tblUtils, itemTypes, utils) {
         var headers = ['id', 'name', 'desc', 'price', 'cart'];
         var headersRow = tblUtils.createHeadersRow(headers);
 
         var composed = {
-            createRow: functional.fcompose(
-                domMainTblHelper.createRow,
-                createCells
-            ),
-            prepareTblWithHeaders: functional.fcompose(
-                appendHeader,
-                domMainTblHelper.getDetachedPlaceholder
-            ),
             resetTotal: functional.fcompose(
                 domMainTblHelper.resetTotal,
                 cart.getTotal
@@ -45,6 +38,11 @@ doresh('mainTblManager.js',
                 }
             }
         };
+
+        function createRow(obj){
+            var cells = createCells(obj);
+            return domMainTblHelper.createRow(cells, utils.getCtorName(obj));
+        }
 
         function appendHeader(placeholder) {
             return domMainTblHelper.insertChildToParent(placeholder, headersRow);
@@ -84,17 +82,17 @@ doresh('mainTblManager.js',
             while (iterator.hasNext()) {
                 domMainTblHelper.insertChildToParent(
                     placeholder,
-                    composed.createRow(iterator.next())
+                    createRow(iterator.next())
                 );
             }
             return placeholder;
         }
 
         function reset(iterator) {
-            functional.fcompose(
-                domMainTblHelper.reset,
-                appendTblBody
-            )(composed.prepareTblWithHeaders(), iterator);
+            var placeholder = domMainTblHelper.getDetachedPlaceholder();
+            appendHeader(placeholder);
+            appendTblBody(placeholder, iterator);
+            domMainTblHelper.reset(placeholder);
         }
 
         function init(iterator){

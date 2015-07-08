@@ -18,8 +18,11 @@ doresh('./dom/tblCreator.js',
 
         }
 
-        function createDivRow(children) {
-            var result = createElement('div', 'row');
+        function createDivRow(children, strClass) {
+            if (!strClass) {
+                strClass = '';
+            }
+            var result = createElement('div', 'row ' + strClass);
             return appendChildrenToElement(result, children);
 
         }

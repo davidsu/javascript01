@@ -29,6 +29,8 @@ doresh(
                 }
                 doBeforePopping();
                 popUp.style.visibility = 'visible';
+                //popUp.style.opacity = 1;
+                //popUp.style.zIndex = 1;
             });
         }
 

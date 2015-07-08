@@ -1,5 +1,6 @@
 @import 'divTbl.css';
 @import 'layouts.css';
+@import 'cart_popup.css';
 .paging{
     text-align:center;
     font-size: 2rem;
@@ -23,29 +24,14 @@
     font-size: 1.3rem;
 }
 
-.popup-cart{
-    position:fixed;
-    background-color: rgba(0, 0, 0, .6);
-    min-width: 100%;
-    min-height: 100%;
-    visibility: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-}
+
 
 #show-cart-button{
     float:right;
     min-height: 1.5rem;
 }
 
-.pop-up-cart-table{
-    margin:30px auto;
-    font-size:2rem;
-    width:95%;
-    border:1px solid black;
-}
+
 
 .clearfix:after{
     content:"";
@@ -53,16 +39,6 @@
     clear:both;
 }
 
-#popup-cart-container{
-    min-width: 70%;
-    background-color: #d0d0ff;
-}
-#close-popup-cart{
-    float:right;
-    margin:10px;
-    border-radius: 50%;
-    color:red;
-}
 
 td, th{
     min-width: 15%;

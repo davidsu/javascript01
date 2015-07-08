@@ -806,8 +806,6 @@ doresh('items.js',
         ];
         var itemInstances = [];
 
-
-
         for(var i = 0; i<items.length; i++){
             if(i%5==0){
                 itemInstances.push(new itemTypes.OnSaleItem(items[i]));
@@ -819,7 +817,6 @@ doresh('items.js',
             }else{
                 itemInstances.push(new itemTypes.BaseItem(items[i]));
             }
-            console.log(itemInstances[i].constructor);
         }
 
         return itemInstances;

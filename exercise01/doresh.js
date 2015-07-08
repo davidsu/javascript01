@@ -1,11 +1,29 @@
 var doresh = (function(){
     var executionDrishot = {};
     var isCodeFileLoaded = {};
+    var EMPTY_STRING = '                                  ';
+
+    function UnableToResolveDependeciesError(message){
+        this.name = "UnableToResolveDependeciesError";
+        this.message = (message || "");
+    }
+
+    UnableToResolveDependeciesError.prototype = Error.prototype;
 
     function printExecutionDrishot(){
         var result = '';
         for(var v in executionDrishot){
             result+= executionDrishot[v].toString()+'\n';
+        }
+        return result;
+    }
+
+    function printUnresolvedDrishot(){
+        var result = '';
+        for(var v in executionDrishot){
+            if(!executionDrishot[v].initialized) {
+                result += executionDrishot[v].toString() + '\n';
+            }
         }
         return result;
     }
@@ -36,7 +54,8 @@ var doresh = (function(){
         this.returnedValue = undefined;
         this.filePath = filePath;
         this.toString = function(){
-            return filePath + " initialized: " + this.initialized;
+            var filePathLen30 = (filePath  + EMPTY_STRING).substring(0, 30);
+            return filePathLen30 + " initialized: " + this.initialized;
         }.bind(this);
     }
 
@@ -106,7 +125,7 @@ var doresh = (function(){
                 resolveAsync(0, noProgressCount, count);
             }else if(!isFullyResolved()){
                 if(noProgressCount>20){
-                    throw 'doresh failed';
+                    throw new UnableToResolveDependeciesError('unresolved files:\n' + printUnresolvedDrishot());
                 }
                 noProgressCount++;
                 console.log(noProgressCount);

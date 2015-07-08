@@ -1,0 +1,46 @@
+/*.popup-cart{*/
+    /*animation-name: loadanim;*/
+    /*animation-iteration-count: 1;*/
+    /*animation-timing-function: ease-in;*/
+    /*animation-duration: 0.4s;*/
+/*}*/
+
+/*@keyframes loadanim {*/
+    /*0%{transform: scale(0) rotate(720deg)}*/
+    /*80%{transform: scale(0.5) rotate(0deg)}*/
+    /*100%{transform: scale(1) }*/
+/*}*/
+
+
+.popup-cart{
+    position:fixed;
+    background-color: rgba(0, 0, 0, .6);
+    min-width: 100%;
+    min-height: 100%;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    z-index: 1;
+    /*opacity: 0;*/
+}
+
+.pop-up-cart-table{
+    margin:30px auto;
+    font-size:2rem;
+    width:95%;
+    border:1px solid black;
+}
+
+#popup-cart-container{
+    min-width: 70%;
+    background-color: #d0d0ff;
+}
+#close-popup-cart{
+    float:right;
+    margin:10px;
+    border-radius: 50%;
+    color:red;
+}
