@@ -13,10 +13,36 @@ doresh('itemTypes.js',
             this.desc = item.desc;
             this.price = item.price;
             this.limit = item.limit;
+            this.coupons = {};
         }
 
-        BaseItem.prototype.getPrice = function(){
-          return parseInt(this.price.substring(1));
+        BaseItem.prototype.getFullPrice = function () {
+            return parseFloat(this.price.substring(1));
+        };
+
+        BaseItem.prototype.getPrice = function () {
+            var price = this.getFullPrice();
+            for (var key in this.coupons) {
+                if (this.coupons[key].active) {
+                    price *= (1 - this.coupons[key].discount);
+                }
+            }
+            return price;
+        };
+
+        BaseItem.prototype.hasActiveCoupon = function(){
+            for (var key in this.coupons) {
+                if (this.coupons[key].active) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        BaseItem.prototype.activateCoupon = function (id) {
+            if (this.coupons[id]) {
+                this.coupons[id].active = true;
+            }
         };
 
 
@@ -28,13 +54,12 @@ doresh('itemTypes.js',
             this.discount = Math.random();
         }
 
-        OnSaleItem.prototype.getFullPrice = function(){
-            return BaseItem.getPrice.apply(this);
-        };
 
-        OnSaleItem.prototype.getPrice = function(){
-            var fullPrice = this.getFullPrice();
-            return fullPrice - fullPrice*this.discount;
+        utils.inherit(OnSaleItem, BaseItem);
+        OnSaleItem.prototype.getPrice = function () {
+            var fullPrice = OnSaleItem.uber.getPrice.call(this);
+            return fullPrice * (1 - this.discount);
+
         };
 
 
@@ -54,12 +79,13 @@ doresh('itemTypes.js',
         }
 
 
-        utils.inherit(OnSaleItem, BaseItem);
+
+
         utils.inherit(OutOfStockItem, BaseItem);
         utils.inherit(NewItem, BaseItem);
 
-        return{
-            BaseItem:BaseItem,
+        return {
+            BaseItem: BaseItem,
             OutOfStockItem: OutOfStockItem,
             NewItem: NewItem,
             OnSaleItem: OnSaleItem

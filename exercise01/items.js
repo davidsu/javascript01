@@ -809,7 +809,6 @@ doresh('items.js',
         for(var i = 0; i<items.length; i++){
             if(i%5==0){
                 itemInstances.push(new itemTypes.OnSaleItem(items[i]));
-                console.log(itemInstances[i].price);
             }else if(i%7==0){
                 itemInstances.push(new itemTypes.OutOfStockItem(items[i]));
             }else if(i%3==0){

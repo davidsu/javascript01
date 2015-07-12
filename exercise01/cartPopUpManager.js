@@ -30,11 +30,17 @@ doresh('cartPopUpManager.js',
             var result = [];
             for(var i = 0; i<headers.length; i++){
                 var key = headers[i];
-                if(key === 'total'){
-                    result.push(tblCreator.createCell(obj.qty*obj.price));
-                }else{
-                    result.push(tblCreator.createCell(obj[key]))
+                switch(key){
+                    case 'total':
+                        result.push(tblCreator.createCell(obj.qty*obj.getPrice()));
+                        break;
+                    case 'price':
+                        result.push(tblCreator.createCell(obj.getPrice()));
+                        break;
+                    default:
+                        result.push(tblCreator.createCell(obj[key]))
                 }
+
             }
             return result;
         }

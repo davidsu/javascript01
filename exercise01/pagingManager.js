@@ -3,18 +3,22 @@ doresh('pagingManager.js',
         'itemsRepo.js',
         'mainTblManager.js',
         'utils.js',
-        'pubsub.js'
-    ], function (itemsRepo, mainTblManager, utils, pubsub) {
+        'pubsub.js',
+        './managers/total.js'
+    ], function (itemsRepo, mainTblManager, utils, pubsub, totalManager) {
 
         var DEFAULT_PAGE_SIZE = 20;
+        var currentPage = null;
 
 
         document.addEventListener('goToPage', function(e){
             goToPage(e.detail.pageNum);
         });
         function goToPage(pageNum) {
+
             var tbody = document.querySelector('.table.pop-up-cart-table');
             tbody.innerHTML = "";
+            currentPage = pageNum || 0;
             var pageSize = getUserDefinedPageSize();
             mainTblManager.reset(itemsRepo.getIterator(pageNum * pageSize, pageSize));
         }
@@ -57,6 +61,7 @@ doresh('pagingManager.js',
             return parseInt(pageSize, 10);
         }
 
+
         function init() {
             pubsub.subscribe('pageSizeReset', function(){
                 resetPagingButtons();
@@ -74,12 +79,17 @@ doresh('pagingManager.js',
             return numOfPagesFloat == numOfPagesInt ? numOfPagesInt : numOfPagesInt + 1;
         }
 
+        function repaint(){
+            goToPage(currentPage);
+            totalManager.resetTotal();
+        }
         return {
             DEFAULT_PAGE_SIZE: DEFAULT_PAGE_SIZE,
             goToPage: goToPage,
             resetPagingButtons: resetPagingButtons,
             getUserDefinedPageSize: getUserDefinedPageSize,
             getNumOfPages: getNumOfPages,
+            repaint: repaint,
             init: init
         };
     }

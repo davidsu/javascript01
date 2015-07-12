@@ -5,8 +5,9 @@ doresh('cart.js',
 
         var CartObj = function(obj){
             this.qty = 1;
-            this.price = parseInt(obj.price.substr(1), 10);
+            this.getPrice = obj.getPrice.bind(obj);
             this.id = obj.id;
+            this.name = obj.name;
             this.itemSrc = obj;
         };
 
@@ -43,13 +44,12 @@ doresh('cart.js',
         function getTotal(){
             var total = 0;
             for(var key in cart){
-                total += cart[key].qty*cart[key].price;
+                total += cart[key].qty*cart[key].itemSrc.getPrice();
             }
-            return total;
+            return total.toFixed(2);
         }
 
-        function getItemInChart(id){
-            var chartObj;
+        function getCartItem(id){
             for(var key in cart){
                 if(cart[key].id==id){
                     return cart[key];
@@ -88,7 +88,7 @@ doresh('cart.js',
             addToCart: addToCart,
             removeFromCart: removeFromCart,
             getTotal: getTotal,
-            getItemInChart: getItemInChart,
+            getItemInChart: getCartItem,
             getIterator: getIterator,
             isEmpty: isEmpty,
             cart: cart

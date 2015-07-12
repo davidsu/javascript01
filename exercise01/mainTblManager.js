@@ -5,24 +5,18 @@ doresh('mainTblManager.js',
         './dom/mainTbl.js',
         'tblUtils.js',
         'itemTypes.js',
-        'utils.js'
+        'utils.js',
+        './managers/total.js'
     ],
-    function (cart, functional, domMainTblHelper, tblUtils, itemTypes, utils) {
+    function (cart, functional, domMainTblHelper, tblUtils, itemTypes, utils, totalManager) {
         var headers = ['id', 'name', 'desc', 'price', 'cart'];
         var headersRow = tblUtils.createHeadersRow(headers);
-
-        var composed = {
-            resetTotal: functional.fcompose(
-                domMainTblHelper.resetTotal,
-                cart.getTotal
-            )
-        };
 
         var cartEvent = {
             minus: function (obj){
                 return function(){
                     var returnval = cart.removeFromCart(obj).qty.toString();
-                    composed.resetTotal();
+                    totalManager.resetTotal();
                     return returnval;
                 }
             },
@@ -33,22 +27,24 @@ doresh('mainTblManager.js',
                         alert("can't sell you more or you'll get addicted!");
                         return;
                     }
-                    composed.resetTotal();
+                    totalManager.resetTotal();
                     return cartInfo.qty.toString();
                 }
             }
         };
 
         function createRow(obj){
-            var cells = createCells(obj);
-            return domMainTblHelper.createRow(cells, utils.getCtorName(obj));
+            var cells = createItemsRowCells(obj);
+            var classes = utils.getCtorName(obj) +
+                (obj.hasActiveCoupon()?" coupon":'');
+            return domMainTblHelper.createRow(cells, classes);
         }
 
         function appendHeader(placeholder) {
             return domMainTblHelper.insertChildToParent(placeholder, headersRow);
         }
 
-        function createCells(obj) {
+        function createItemsRowCells(obj) {
             var result = [];
             for(var i = 0; i<headers.length; i++){
                 var key = headers[i];
@@ -58,7 +54,12 @@ doresh('mainTblManager.js',
                         cell = createCartPlusMinusCell(obj);
                         break;
                     case 'price':
-                        cell = domMainTblHelper.createCell('$'+obj.getPrice(), key);
+                        var hasToolTip = obj.hasActiveCoupon() || obj instanceof itemTypes.OnSaleItem;
+                        if(hasToolTip) {
+                            cell = domMainTblHelper.createToolTippedCell('$' + (obj.getPrice().toFixed(2)), 'full price: ' + obj.getFullPrice(), key);
+                        }else{
+                            cell = domMainTblHelper.createCell('$'+(obj.getPrice().toFixed(2)), key);
+                        }
                         break;
                     default:
                         cell = domMainTblHelper.createCell(obj[key], key);

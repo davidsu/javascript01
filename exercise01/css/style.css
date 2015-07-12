@@ -1,6 +1,8 @@
 @import 'divTbl.css';
 @import 'layouts.css';
 @import 'cart_popup.css';
+@import 'utils.css';
+@import 'tooltip.css';
 .paging{
     text-align:center;
     font-size: 2rem;
@@ -9,12 +11,21 @@
     min-height: 6rem;
 }
 
-.total-div{
+.upper-footer {
     margin:0 auto;
     font-size:2rem;
     min-width: 70%;
     text-align: right;
     display: table;
+}
+
+.total-div{
+    float:right;
+}
+
+.activate-coupon{
+    float:left;
+    font-size:1rem;
 }
 
 #total-placeholder{
@@ -33,11 +44,7 @@
 
 
 
-.clearfix:after{
-    content:"";
-    display: table;
-    clear:both;
-}
+
 
 
 td, th{

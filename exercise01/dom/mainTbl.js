@@ -35,6 +35,14 @@ doresh('./dom/mainTbl.js',
             return labelQty;
         }
 
+        function createToolTippedCell(cellContent, toolTipContent, strClass){
+
+            var cell = tblCreator.createCell(cellContent, strClass+' tooltip-wrapper');
+            var toolTip = tblCreator.createCell(toolTipContent, 'tooltip tooltip-blue tooltip-animated');
+            domUtils.insertChildToParent(cell, toolTip);
+            return cell;
+        }
+
 
         return {
             reset: reset,
@@ -43,6 +51,7 @@ doresh('./dom/mainTbl.js',
             createCartAddRemoveButton: createCartAddRemoveButton,
             createCartCell: createCartCell,
             resetTotal: total.resetTotal,
+            createToolTippedCell: createToolTippedCell,
 
             createRow: tblCreator.createRow,
             createCell: tblCreator.createCell,
