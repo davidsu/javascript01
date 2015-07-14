@@ -1,4 +1,4 @@
-doresh('app.js',
+doresh('./e/app.js',
     [
         './managers/paging.js',
         './items/itemsRepo.js',

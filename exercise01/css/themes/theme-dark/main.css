@@ -1,0 +1,24 @@
+@import 'divTbl.css';
+@import 'cart_popup.css';
+@import '../tooltip.css';
+.lower-footer {
+    background-color: #6c6c6c;
+}
+
+
+.go-dark {
+    background: #000;
+    color:#fff;
+}
+
+.all-yellow{
+    background-color: rgb(246, 243, 196);
+}
+
+.container{
+    background-color: black;
+    color: white;
+}
+
+
+

@@ -2,6 +2,7 @@ var doresh = (function(){
     var executionDrishot = {};
     var isCodeFileLoaded = {};
     var EMPTY_STRING = '                                  ';
+    var MAX_FAILS_MAKING_PROGRESS = 20;
 
     function UnableToResolveDependeciesError(message){
         this.name = "UnableToResolveDependeciesError";
@@ -59,11 +60,11 @@ var doresh = (function(){
         }.bind(this);
     }
 
-    function tryToMakeProgress(codeFile){
+    function tryToMakeProgress(drishObj){
         var madeProgress = false;
         var depsAreInitialized = true;
 
-        codeFile.dependencies.forEach(function(key){
+        drishObj.dependencies.forEach(function(key){
             if(!executionDrishot[key] && !isCodeFileLoaded[key]){
                 loadCodeFile(key);
                 madeProgress = true;
@@ -74,11 +75,11 @@ var doresh = (function(){
         });
 
         if(depsAreInitialized){
-            var parameters = codeFile.dependencies.map(function(key){
+            var parameters = drishObj.dependencies.map(function(key){
                 return executionDrishot[key].returnedValue;
             });
-            codeFile.initialized = true;
-            codeFile.returnedValue = codeFile.execute.apply(null, parameters);
+            drishObj.initialized = true;
+            drishObj.returnedValue = drishObj.execute.apply(null, parameters);
             madeProgress = true;
         }
 
@@ -124,7 +125,7 @@ var doresh = (function(){
             if(resolve()){
                 resolveAsync(0, noProgressCount, count);
             }else if(!isFullyResolved()){
-                if(noProgressCount>20){
+                if(noProgressCount>MAX_FAILS_MAKING_PROGRESS){
                     throw new UnableToResolveDependeciesError('unresolved files:\n' + printUnresolvedDrishot());
                 }
                 noProgressCount++;

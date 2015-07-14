@@ -1,0 +1,16 @@
+.input-label{
+    font-size: 1.3rem;
+}
+
+.paging{
+    max-width: 60%;
+    display: inline-block;
+    margin:0 auto;
+}
+#set-page-size{
+    width: 3.5rem;
+}
+#paging-navigation-placeholder button{
+    width: 2.5rem;
+}
+

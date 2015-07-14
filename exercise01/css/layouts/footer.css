@@ -1,0 +1,28 @@
+.lower-footer {
+    text-align:center;
+    font-size: 2rem;
+    padding:5px;
+    min-height: 6rem;
+    position: relative;
+}
+
+.upper-footer {
+    margin:0 auto;
+    font-size:2rem;
+    min-width: 70%;
+    text-align: center;
+    display: table;
+}
+
+.go-dark {
+    position:absolute;
+    top:1rem;
+    left:2rem;
+    font-size: 1rem;
+    padding: 1rem;
+    min-width: 10rem;
+}
+
+.upper-footer-container{
+    position: relative;
+}

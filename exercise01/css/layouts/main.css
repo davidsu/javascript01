@@ -2,53 +2,38 @@
 @import 'layouts.css';
 @import 'cart_popup.css';
 @import 'tooltip.css';
+@import 'footer.css';
+@import 'paging.css';
 
-.lower-footer {
-    text-align:center;
-    font-size: 2rem;
-    padding:5px;
-    min-height: 6rem;
-    position: relative;
-}
-
-.upper-footer {
-    margin:0 auto;
-    font-size:2rem;
-    min-width: 70%;
-    text-align: right;
-    display: table;
-}
 
 .total-div{
     float:right;
 }
 
 .activate-coupon{
-    float:left;
+    position: absolute;
+    bottom:.5rem;
     font-size:1rem;
 }
 
 #total-placeholder{
     margin-left:20px;
 }
-.input-label{
-    font-size: 1.3rem;
+
+
+.total-div{
+    float:right;
 }
-
-
 
 #show-cart-button{
-    float:right;
+    /*float:right;*/
     min-height: 1.5rem;
+    margin:.5rem;
+    position: absolute;
+    width: 10rem;
 }
 
-.make-yellow {
-    position:absolute;
-    top:1rem;
-    left:2rem;
-    font-size: 1rem;
-    padding: 1rem;
-}
+
 
 td, th{
     min-width: 15%;

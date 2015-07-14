@@ -47,6 +47,7 @@ doresh('./managers/coupon.js',
             createAndActivateCoupon(0.2, [0, 3, 6]);
             createAndActivateCoupon(0.1, [10, 30, 60]);
             createAndActivateCoupon(0.9, [15, 25, 27, 65, 69, 102]);
+            createCoupon(1,[10, 19]);
 
         }
         function init(){

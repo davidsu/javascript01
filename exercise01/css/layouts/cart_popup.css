@@ -28,4 +28,8 @@
     float:right;
     margin:10px;
     border-radius: 50%;
+    font-size: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    padding-bottom: 2rem;
 }
