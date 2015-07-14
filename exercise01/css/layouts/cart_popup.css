@@ -1,0 +1,31 @@
+
+.popup-cart{
+    position:fixed;
+    min-width: 100%;
+    min-height: 100%;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    z-index: 1;
+    /*opacity: 0;*/
+}
+
+.pop-up-cart-table{
+    margin:30px auto;
+    font-size:2rem;
+    width:95%;
+    border-width:1px;
+    border-style:solid;
+}
+
+#popup-cart-container{
+    min-width: 70%;
+}
+#close-popup-cart{
+    float:right;
+    margin:10px;
+    border-radius: 50%;
+}

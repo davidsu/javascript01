@@ -1,0 +1,15 @@
+
+.popup-cart{
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.pop-up-cart-table{
+    border-color:black;
+}
+
+#popup-cart-container{
+    background-color: #d0d0ff;
+}
+#close-popup-cart{
+    color:red;
+}

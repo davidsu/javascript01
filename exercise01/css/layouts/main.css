@@ -1,13 +1,12 @@
 @import 'divTbl.css';
 @import 'layouts.css';
 @import 'cart_popup.css';
-@import 'utils.css';
 @import 'tooltip.css';
+
 .lower-footer {
     text-align:center;
     font-size: 2rem;
     padding:5px;
-    background-color: #d0ffd0;
     min-height: 6rem;
     position: relative;
 }
@@ -48,17 +47,8 @@
     top:1rem;
     left:2rem;
     font-size: 1rem;
-    background: rgb(246, 243, 196);
     padding: 1rem;
 }
-
-.all-yellow{
-    background-color: rgb(246, 243, 196);
-}
-
-
-
-
 
 td, th{
     min-width: 15%;

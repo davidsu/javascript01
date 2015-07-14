@@ -1,12 +1,13 @@
 doresh('app.js',
     [
-        'pagingManager.js',
-        'itemsRepo.js',
-        'items.js',
-        'mainTblManager.js',
-        'cartPopUpManager.js',
-        'couponManager.js',
-        'cmdLine.js'
+        './managers/paging.js',
+        './items/itemsRepo.js',
+        './items/items.js',
+        './managers/mainTbl.js',
+        './managers/cartPopUp.js',
+        './managers/coupon.js',
+        'cmdLine.js',
+        './managers/makeYellow.js'
     ],
     function (paging, itemsRepo, items, mainTblManager) {
         paging.init();

@@ -1,7 +1,7 @@
-doresh('pagingManager.js',
+doresh('./managers/paging.js',
     [
-        'itemsRepo.js',
-        'mainTblManager.js',
+        './items/itemsRepo.js',
+        './managers/mainTbl.js',
         'utils.js',
         'pubsub.js',
         './managers/total.js'

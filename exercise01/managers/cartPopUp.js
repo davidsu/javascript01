@@ -1,4 +1,4 @@
-doresh('cartPopUpManager.js',
+doresh('./managers/cartPopUp.js',
     [
         'cart.js',
         './dom/cartPopUp.js',
@@ -8,7 +8,7 @@ doresh('cartPopUpManager.js',
     ],
     function(cart, domCartPopUp, tblCreator, tblUtils, functional){
 
-        var headers = ['id', 'name', 'qty', 'price', 'total'];
+        var headers = ['id', 'name', 'price', 'qty', 'total'];
         var headersRow = tblUtils.createHeadersRow(headers);
 
         var composed = {
@@ -32,10 +32,14 @@ doresh('cartPopUpManager.js',
                 var key = headers[i];
                 switch(key){
                     case 'total':
-                        result.push(tblCreator.createCell(obj.qty*obj.getPrice()));
+                        result.push(tblCreator.createCell(
+                            (obj.qty*obj.getPrice()).toFixed(2)
+                        ));
                         break;
                     case 'price':
-                        result.push(tblCreator.createCell(obj.getPrice()));
+                        result.push(tblCreator.createCell(
+                            obj.getPrice().toFixed(2)
+                        ));
                         break;
                     default:
                         result.push(tblCreator.createCell(obj[key]))

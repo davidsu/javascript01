@@ -146,8 +146,22 @@ var doresh = (function(){
         executionDrishot[filePath] = new DrishObj(drishot, callback, filePath);
     }
 
+    function getAppScriptPath(){
+        var scripts = document.querySelectorAll('script'),
+            doreshScriptElement, dataAppPath;
+        for(var i = 0; i<scripts.length; i++){
+            if(utils.stringEndsWith(scripts[i].getAttribute('src'), 'doresh.js')){
+                doreshScriptElement = scripts[i];
+                break;
+            }
+        }
+        dataAppPath = doreshScriptElement.getAttribute('data-app');
+        return dataAppPath || 'app.js';
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
-        loadCodeFile('app.js');
+        var appScriptPath = getAppScriptPath();
+        loadCodeFile(appScriptPath);
         resolveAsync(20, 0, 0);
     });
     return doresh;

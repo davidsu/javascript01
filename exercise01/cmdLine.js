@@ -1,8 +1,8 @@
 doresh('cmdLine.js',
     [
-        'itemsRepo.js',
-        'pagingManager.js',
-        'couponManager.js'
+        './items/itemsRepo.js',
+        './managers/paging.js',
+        './managers/coupon.js'
     ],
     function (itemsRepo, pagingManager, coupon) {
         window.cmd = {

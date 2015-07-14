@@ -1,0 +1,28 @@
+@import 'divTbl.css';
+@import 'cart_popup.css';
+@import '../tooltip.css';
+.lower-footer {
+    background-color: #d0ffd0;
+}
+
+.total-div{
+    float:right;
+}
+
+
+.make-yellow {
+    background: rgb(246, 243, 196);
+}
+
+.all-yellow{
+    background-color: rgb(246, 243, 196);
+}
+
+td, th{
+    min-width: 15%;
+    text-align: center;
+}
+
+body{
+    margin:0;
+}

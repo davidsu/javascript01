@@ -1,8 +1,8 @@
-doresh('couponManager.js',
+doresh('./managers/coupon.js',
     [
-        'itemsRepo.js',
+        './items/itemsRepo.js',
         'errors.js',
-        'pagingManager.js',
+        './managers/paging.js',
         './dom/coupon.js'
     ],
     function (itemsRepo, errors, pagingManager, domCouponHelper) {

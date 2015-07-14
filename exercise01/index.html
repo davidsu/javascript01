@@ -3,7 +3,7 @@
     <head lang="en">
         <meta charset="UTF-8">
         <title></title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/main_bright.css">
     </head>
     <body>
         <div class="popup-cart">
@@ -17,6 +17,7 @@
             <div class="table main">
             </div>
 
+
             <div class="footer">
                 <div class="upper-footer">
                     <div class="activate-coupon">
@@ -24,6 +25,7 @@
                         <input type="number" id="coupon-id">
                         <button id="btn-activate-coupon">Activate Coupon</button>
                     </div>
+
                     <div class="total-div">
                         <div class="clearfix">
                             <button id="show-cart-button">show cart</button>
@@ -32,13 +34,17 @@
                         <label id="total-placeholder">0</label>
                     </div>
                 </div>
-                <div class="paging">
+                <div class="lower-footer">
 
-                    <label for="page-size" class="input-label">Page Size</label>
-                    <input type="number" id="page-size"/>
-                    <button id="set-page-size">Set</button>
-                    <span id="paging-navigation-placeholder"></span>
-
+                    <form class="make-yellow">
+                        <input type="checkbox" id="chk-make-yellow">Yellow me
+                    </form>
+                    <div class="paging">
+                        <label for="page-size" class="input-label">Page Size</label>
+                        <input type="number" id="page-size"/>
+                        <button id="set-page-size">Set</button>
+                        <span id="paging-navigation-placeholder"></span>
+                    </div>
                 </div>
             </div>
         </div>

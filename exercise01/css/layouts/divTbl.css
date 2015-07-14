@@ -1,0 +1,45 @@
+
+.table {
+    display: table;
+    max-width: 800px;
+    width: 80%;
+    border-width: 2px;
+    border-style:solid;
+    margin: 1.5em auto 12rem;
+    font-size: 1.5rem;
+    position: relative;
+}
+
+
+.heading {
+    display: table-row;
+    font-weight: bold;
+    text-align: center;
+}
+
+.row {
+    display: table-row;
+    position: relative;
+}
+
+.table.main .coupon .price{
+    border-width: 3px;
+    border-style: solid;
+}
+
+.table.main .OutOfStockItem button{
+    visibility: hidden;
+}
+
+.cell {
+    text-align: center;
+    display: table-cell;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    box-sizing: border-box;
+}
+
+
+
+
+

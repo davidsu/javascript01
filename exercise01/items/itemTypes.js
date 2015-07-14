@@ -1,4 +1,4 @@
-doresh('itemTypes.js',
+doresh('./items/itemTypes.js',
     [
         'utils.js'
     ],
@@ -30,7 +30,7 @@ doresh('itemTypes.js',
             return price;
         };
 
-        BaseItem.prototype.hasActiveCoupon = function(){
+        BaseItem.prototype.hasDiscount = function(){
             for (var key in this.coupons) {
                 if (this.coupons[key].active) {
                     return true;
@@ -45,6 +45,10 @@ doresh('itemTypes.js',
             }
         };
 
+        BaseItem.prototype.getCtorName = function(){
+          return utils.getCtorName(this);
+        };
+
 
         function OnSaleItem(item) {
             if (!(this instanceof OnSaleItem)) {
@@ -57,10 +61,12 @@ doresh('itemTypes.js',
 
         utils.inherit(OnSaleItem, BaseItem);
         OnSaleItem.prototype.getPrice = function () {
-            var fullPrice = OnSaleItem.uber.getPrice.call(this);
-            return fullPrice * (1 - this.discount);
+            var price = OnSaleItem.uber.getPrice.call(this);
+            return price * (1 - this.discount);
 
         };
+
+        OnSaleItem.prototype.hasDiscount = function(){return true;};
 
 
         function OutOfStockItem(item) {

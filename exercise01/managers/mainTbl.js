@@ -1,27 +1,25 @@
-doresh('mainTblManager.js',
+doresh('./managers/mainTbl.js',
     [
         'cart.js',
-        'functionalElements.js',
         './dom/mainTbl.js',
         'tblUtils.js',
-        'itemTypes.js',
-        'utils.js',
+        './items/itemTypes.js',
         './managers/total.js'
     ],
-    function (cart, functional, domMainTblHelper, tblUtils, itemTypes, utils, totalManager) {
+    function (cart, domMainTblHelper, tblUtils, itemTypes, totalManager) {
         var headers = ['id', 'name', 'desc', 'price', 'cart'];
         var headersRow = tblUtils.createHeadersRow(headers);
 
         var cartEvent = {
-            minus: function (obj){
-                return function(){
+            minus: function (obj) {
+                return function () {
                     var returnval = cart.removeFromCart(obj).qty.toString();
                     totalManager.resetTotal();
                     return returnval;
                 }
             },
-            plus: function (obj){
-                return function(){
+            plus: function (obj) {
+                return function () {
                     var cartInfo = cart.addToCart(obj);
                     if (!cartInfo.success) {
                         alert("can't sell you more or you'll get addicted!");
@@ -33,10 +31,10 @@ doresh('mainTblManager.js',
             }
         };
 
-        function createRow(obj){
+        function createRow(obj) {
             var cells = createItemsRowCells(obj);
-            var classes = utils.getCtorName(obj) +
-                (obj.hasActiveCoupon()?" coupon":'');
+            var classes = obj.getCtorName() +
+                (obj.hasDiscount() ? " coupon" : '');
             return domMainTblHelper.createRow(cells, classes);
         }
 
@@ -44,33 +42,28 @@ doresh('mainTblManager.js',
             return domMainTblHelper.insertChildToParent(placeholder, headersRow);
         }
 
+        function createCell(key, obj){
+            switch (key) {
+                case 'cart':
+                    return createCartPlusMinusCell(obj);
+                case 'price':
+                    if (obj.hasDiscount()) {
+                        return domMainTblHelper.createToolTippedCell('$' + (obj.getPrice().toFixed(2)), 'full price: ' + obj.getFullPrice(), key);
+                    }
+                    return domMainTblHelper.createCell('$' + (obj.getPrice().toFixed(2)), key);
+                default:
+                    return domMainTblHelper.createCell(obj[key], key);
+            }
+        }
         function createItemsRowCells(obj) {
             var result = [];
-            for(var i = 0; i<headers.length; i++){
-                var key = headers[i];
-                var cell = null;
-                switch(key){
-                    case 'cart':
-                        cell = createCartPlusMinusCell(obj);
-                        break;
-                    case 'price':
-                        var hasToolTip = obj.hasActiveCoupon() || obj instanceof itemTypes.OnSaleItem;
-                        if(hasToolTip) {
-                            cell = domMainTblHelper.createToolTippedCell('$' + (obj.getPrice().toFixed(2)), 'full price: ' + obj.getFullPrice(), key);
-                        }else{
-                            cell = domMainTblHelper.createCell('$'+(obj.getPrice().toFixed(2)), key);
-                        }
-                        break;
-                    default:
-                        cell = domMainTblHelper.createCell(obj[key], key);
-                }
-                result.push(cell);
-
+            for (var i = 0; i < headers.length; i++) {
+                result.push(createCell(headers[i], obj));
             }
             return result;
         }
 
-        function createCartPlusMinusCell(obj){
+        function createCartPlusMinusCell(obj) {
             var cartItem = cart.getItemInChart(obj.id);
 
             var labelQty = domMainTblHelper.createCartLabel(cartItem ? cartItem.qty : 0);
@@ -96,7 +89,7 @@ doresh('mainTblManager.js',
             domMainTblHelper.reset(placeholder);
         }
 
-        function init(iterator){
+        function init(iterator) {
             reset(iterator);
         }
 
