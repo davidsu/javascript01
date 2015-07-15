@@ -3,12 +3,11 @@ doresh('./managers/mainTbl.js',
         'cart.js',
         './dom/mainTbl.js',
         'tblUtils.js',
-        './items/itemTypes.js',
         './managers/total.js'
     ],
-    function (cart, domMainTblHelper, tblUtils, itemTypes, totalManager) {
-        var headers = ['id', 'name', 'desc', 'price', 'cart'];
-        var headersRow = tblUtils.createHeadersRow(headers);
+    function (cart, domMainTblHelper, tblUtils, totalManager) {
+        var HEADERS = ['id', 'name', 'desc', 'price', 'cart'];
+        var headersRow = tblUtils.createHeadersRow(HEADERS);
 
         var cartEvent = {
             minus: function (obj) {
@@ -57,8 +56,8 @@ doresh('./managers/mainTbl.js',
         }
         function createItemsRowCells(obj) {
             var result = [];
-            for (var i = 0; i < headers.length; i++) {
-                result.push(createCell(headers[i], obj));
+            for (var i = 0; i < HEADERS.length; i++) {
+                result.push(createCell(HEADERS[i], obj));
             }
             return result;
         }

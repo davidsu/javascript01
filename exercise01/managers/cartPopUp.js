@@ -8,8 +8,8 @@ doresh('./managers/cartPopUp.js',
     ],
     function(cart, domCartPopUp, tblCreator, tblUtils, functional){
 
-        var headers = ['id', 'name', 'price', 'qty', 'total'];
-        var headersRow = tblUtils.createHeadersRow(headers);
+        var HEADERS = ['id', 'name', 'price', 'qty', 'total'];
+        var headersRow = tblUtils.createHeadersRow(HEADERS);
 
         var composed = {
             createRow: functional.fcompose(
@@ -28,8 +28,8 @@ doresh('./managers/cartPopUp.js',
 
         function createCells(obj){
             var result = [];
-            for(var i = 0; i<headers.length; i++){
-                var key = headers[i];
+            for(var i = 0; i<HEADERS.length; i++){
+                var key = HEADERS[i];
                 switch(key){
                     case 'total':
                         result.push(tblCreator.createCell(

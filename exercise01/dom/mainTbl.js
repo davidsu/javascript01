@@ -2,9 +2,8 @@ doresh('./dom/mainTbl.js',
     [
         './dom/utils.js',
         './dom/tblCreator.js',
-        './dom/total.js'
     ],
-    function (domUtils, tblCreator, total) {
+    function (domUtils, tblCreator) {
         function reset(newlyBuiltTable) {
             var tblPlaceHolder = document.querySelector('.table.main');
             tblPlaceHolder.innerHTML = '';
@@ -50,7 +49,6 @@ doresh('./dom/mainTbl.js',
             createCartLabel: createCartLabel,
             createCartAddRemoveButton: createCartAddRemoveButton,
             createCartCell: createCartCell,
-            resetTotal: total.resetTotal,
             createToolTippedCell: createToolTippedCell,
 
             createRow: tblCreator.createRow,
