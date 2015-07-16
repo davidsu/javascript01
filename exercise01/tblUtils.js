@@ -1,9 +1,9 @@
 define(
     [
         './dom/tblCreator.js',
-        'functionalElements.js'
+        './lib/lodash.js'
     ],
-    function(tblCreator, functional){
+    function(tblCreator, _){
         function createHeaderCells(headers) {
             var headerCells = [];
             headers.forEach(function (column) {
@@ -13,7 +13,7 @@ define(
         }
 
         function createHeadersRow(headers) {
-            var rowAfterChildren = functional.fcompose(
+            var rowAfterChildren = _.compose(
                 tblCreator.createHeadersRow,
                 createHeaderCells
             );

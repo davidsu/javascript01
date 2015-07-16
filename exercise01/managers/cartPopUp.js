@@ -4,19 +4,19 @@ define(
         '../dom/cartPopUp.js',
         '../dom/tblCreator.js',
         '../tblUtils.js',
-        '../functionalElements.js'
+        '../lib/lodash.js'
     ],
-    function(cart, domCartPopUp, tblCreator, tblUtils, functional){
+    function(cart, domCartPopUp, tblCreator, tblUtils, _){
 
         var HEADERS = ['id', 'name', 'price', 'qty', 'total'];
         var headersRow = tblUtils.createHeadersRow(HEADERS);
 
         var composed = {
-            createRow: functional.fcompose(
+            createRow: _.compose(
                 tblCreator.createRow,
                 createCells
             ),
-            prepareTblWithHeaders: functional.fcompose(
+            prepareTblWithHeaders: _.compose(
                 appendHeader,
                 tblCreator.getDetachedPlaceholder
             )
@@ -60,7 +60,7 @@ define(
         }
 
         function reset(){
-            functional.fcompose(
+            _.compose(
                 domCartPopUp.reset,
                 appendTblBody
             )(composed.prepareTblWithHeaders(), cart.getIterator());
