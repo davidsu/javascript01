@@ -1,5 +1,4 @@
-doresh('./managers/goDark.js',
-    [],
+define(
     function () {
         var darkCheckBox = document.querySelector('#btn-go-dark');
         var styleElement = document.querySelector('#main-css-file');

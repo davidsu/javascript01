@@ -1,9 +1,9 @@
-doresh('./managers/coupon.js',
+define(
     [
-        './items/itemsRepo.js',
-        'errors.js',
-        './managers/paging.js',
-        './dom/coupon.js'
+        '../items/itemsRepo.js',
+        '../errors.js',
+        '../managers/paging.js',
+        '../dom/coupon.js'
     ],
     function (itemsRepo, errors, pagingManager, domCouponHelper) {
 

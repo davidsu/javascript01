@@ -1,7 +1,7 @@
-doresh('./dom/mainTbl.js',
+define(
     [
-        './dom/utils.js',
-        './dom/tblCreator.js',
+        './utils.js',
+        './tblCreator.js',
     ],
     function (domUtils, tblCreator) {
         function reset(newlyBuiltTable) {

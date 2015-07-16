@@ -1,10 +1,10 @@
-doresh('./managers/cartPopUp.js',
+define(
     [
-        'cart.js',
-        './dom/cartPopUp.js',
-        './dom/tblCreator.js',
-        'tblUtils.js',
-        'functionalElements.js'
+        '../cart.js',
+        '../dom/cartPopUp.js',
+        '../dom/tblCreator.js',
+        '../tblUtils.js',
+        '../functionalElements.js'
     ],
     function(cart, domCartPopUp, tblCreator, tblUtils, functional){
 

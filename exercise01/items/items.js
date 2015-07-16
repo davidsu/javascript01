@@ -1,6 +1,6 @@
 
-doresh('./items/items.js',
-    ['./items/itemTypes.js'],
+define(
+    ['./itemTypes.js'],
     function(itemTypes) {
         var items =  [
             {

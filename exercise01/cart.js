@@ -1,4 +1,4 @@
-doresh('cart.js',
+define(
     [],
     function(){
         var cart = {};

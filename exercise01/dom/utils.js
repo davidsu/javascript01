@@ -1,5 +1,4 @@
-doresh('./dom/utils.js',
-      [],
+define(
       function () {
             function createEmptyFragment(){
                   return document.createDocumentFragment();

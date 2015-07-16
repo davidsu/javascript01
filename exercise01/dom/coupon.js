@@ -1,5 +1,4 @@
-doresh('./dom/coupon.js',
-    [],
+define(
     function () {
 
         function setBtnCouponActivatorListener(activateCoupon){

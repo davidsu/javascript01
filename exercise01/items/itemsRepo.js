@@ -1,5 +1,5 @@
-doresh('./items/itemsRepo.js',
-    ['./items/items.js'],
+define(
+    ['./items.js'],
     function(items) {
 
         function getItemsCount() {

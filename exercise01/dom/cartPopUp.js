@@ -1,7 +1,7 @@
-doresh(
-    './dom/cartPopUp.js',
+define(
+
     [
-        './dom/utils.js'
+        './utils.js'
     ],
     function(domUtils){
         var popUp = document.querySelector('.popup-cart');

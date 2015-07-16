@@ -1,4 +1,4 @@
-doresh('errors.js',
+define(
     [],
     function () {
         function CouponIdError(message){

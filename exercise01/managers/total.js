@@ -1,7 +1,7 @@
-doresh('./managers/total.js',
+define(
     [
-        './dom/total.js',
-        'cart.js'
+        '../dom/total.js',
+        '../cart.js'
     ],
     function (domTotalHelper, cart) {
         function resetTotal(){

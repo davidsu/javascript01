@@ -1,6 +1,6 @@
-doresh('./dom/tblCreator.js',
+define(
     [
-        './dom/utils.js'
+        './utils.js'
     ],
     function (domUtils) {
 

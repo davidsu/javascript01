@@ -1,4 +1,4 @@
-doresh('cmdLine.js',
+define(
     [
         './items/itemsRepo.js',
         './managers/paging.js',

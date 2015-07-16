@@ -1,4 +1,4 @@
-doresh('app.js',
+require(
     [
         './managers/paging.js',
         './items/itemsRepo.js',

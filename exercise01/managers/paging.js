@@ -1,10 +1,10 @@
-doresh('./managers/paging.js',
+define(
     [
-        './items/itemsRepo.js',
-        './managers/mainTbl.js',
-        'utils.js',
-        'pubsub.js',
-        './managers/total.js'
+        '../items/itemsRepo.js',
+        '../managers/mainTbl.js',
+        '../utils.js',
+        '../pubsub.js',
+        '../managers/total.js'
     ], function (itemsRepo, mainTblManager, utils, pubsub, totalManager) {
 
         var DEFAULT_PAGE_SIZE = 20;

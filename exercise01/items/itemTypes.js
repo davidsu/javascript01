@@ -1,6 +1,6 @@
-doresh('./items/itemTypes.js',
+define(
     [
-        'utils.js'
+        '../utils.js'
     ],
     function (utils) {
         function BaseItem(item) {

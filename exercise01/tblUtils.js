@@ -1,4 +1,4 @@
-doresh('tblUtils.js',
+define(
     [
         './dom/tblCreator.js',
         'functionalElements.js'

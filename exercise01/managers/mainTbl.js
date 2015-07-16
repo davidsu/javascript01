@@ -1,9 +1,9 @@
-doresh('./managers/mainTbl.js',
+define(
     [
-        'cart.js',
-        './dom/mainTbl.js',
-        'tblUtils.js',
-        './managers/total.js'
+        '../cart.js',
+        '../dom/mainTbl.js',
+        '../tblUtils.js',
+        '../managers/total.js'
     ],
     function (cart, domMainTblHelper, tblUtils, totalManager) {
         var HEADERS = ['id', 'name', 'desc', 'price', 'cart'];

@@ -1,4 +1,4 @@
-doresh('utils.js',
+define(
     [],
     function() {
         var typeOf = function(type) {
