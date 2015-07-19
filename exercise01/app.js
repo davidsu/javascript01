@@ -6,7 +6,9 @@ require(
         './managers/cartPopUp.js',
         './managers/coupon.js',
         'cmdLine.js',
-        './managers/goDark.js'
+        './managers/goDark.js',
+        './lib/react.js',
+        './lib/JSXTransformer.js'
     ],
     function (paging, itemsRepo, mainTblManager) {
         paging.init();
