@@ -1,0 +1,18 @@
+@import 'divTbl.css';
+@import 'cart_popup.css';
+@import '../tooltip.css';
+.lower-footer {
+    background-color: #d0ffd0;
+}
+
+.total-div{
+    float:right;
+}
+
+
+.go-dark {
+    background: rgb(246, 243, 196);
+}
+
+
+

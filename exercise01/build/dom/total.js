@@ -1,0 +1,1 @@
+define(function(){function a(a){var b=document.querySelector("#total-placeholder");b.innerHTML=a}return{resetTotal:a}});

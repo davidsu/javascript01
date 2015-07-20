@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="./css/main/main.css">
+        <link rel="stylesheet" type="text/css" href="./css/themes/theme-dark/main.css" id="main-css-file">
+    </head>
+    <body>
+        <dialog class="popup-cart">
+            <div id="popup-cart-container">
+                <button id="close-popup-cart">x</button>
+                <div class="table pop-up-cart-table"></div>
+            </div>
+
+        </dialog>
+        <main class="container">
+            <div class="table main">
+            </div>
+
+
+            <footer class="footer">
+                <section class="upper-footer-container">
+                    <div class="upper-footer">
+                        <div class="activate-coupon">
+                            <label for="coupon-id">Select Coupon</label>
+                            <input type="number" id="coupon-id">
+                            <button id="btn-activate-coupon">Activate Coupon</button>
+                        </div>
+
+                        <button id="show-cart-button">SHOW CART</button>
+                        <div class="total-div">
+                            <label>Total</label>
+                            <label id="total-placeholder">0</label>
+                        </div>
+                    </div>
+                </section>
+                <section class="lower-footer">
+
+                    <button class="go-dark" id="btn-go-dark">Go Bright</button>
+                    <div class="paging">
+                        <label for="page-size" class="input-label">Page Size</label>
+                        <input type="number" id="page-size"/>
+                        <button id="set-page-size">Set</button>
+                        <span id="paging-navigation-placeholder"></span>
+                    </div>
+                </section>
+            </footer>
+        </main>
+
+
+        <script data-main="app.js" src="./lib/require.js"></script>
+        <!--<script>-->
+            <!--require.config({-->
+                <!--baseUrl: '/kickstart/javascript01/exercise01/src'-->
+            <!--});-->
+        <!--</script>-->
+    </body>
+</html>

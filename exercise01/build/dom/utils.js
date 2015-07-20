@@ -1,0 +1,1 @@
+define(function(){function a(){return document.createDocumentFragment()}function b(a,b){return a.appendChild(b),a}function c(a){var b=document.createElement("button");return b.appendChild(document.createTextNode(a)),b}return{createEmptyFragment:a,insertChildToParent:b,createButton:c}});

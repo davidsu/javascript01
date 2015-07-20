@@ -1,0 +1,1 @@
+require(["managers/paging.js","./items/itemsRepo.js","./managers/mainTbl.js","./managers/cartPopUp.js","./managers/coupon.js","cmdLine.js","./managers/goDark.js","./lib/react.js","./lib/JSXTransformer.js"],function(a,b,c){require.config({baseUrl:"./src/"}),a.init(),c.init(b.getIterator(0,a.DEFAULT_PAGE_SIZE)),a.resetPagingButtons()});

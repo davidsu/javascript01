@@ -1,0 +1,1 @@
+define(["../dom/total.js","../cart.js"],function(a,b){function c(){var c=b.getTotal();a.resetTotal(c)}return{resetTotal:c}});
