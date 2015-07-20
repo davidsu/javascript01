@@ -6,6 +6,7 @@ define(
         '../managers/total.js'
     ],
     function (cart, domMainTblHelper, tblUtils, totalManager) {
+        'use strict';
         var HEADERS = ['id', 'name', 'desc', 'price', 'cart'];
         var headersRow = tblUtils.createHeadersRow(HEADERS);
 
@@ -15,25 +16,25 @@ define(
                     var returnval = cart.removeFromCart(obj).qty.toString();
                     totalManager.resetTotal();
                     return returnval;
-                }
+                };
             },
             plus: function (obj) {
                 return function () {
                     var cartInfo = cart.addToCart(obj);
                     if (!cartInfo.success) {
-                        alert("can't sell you more or you'll get addicted!");
-                        return;
+                        alert("can't sell you more or you'll get addicted!");// eslint-disable-line no-alert
+                        return null;
                     }
                     totalManager.resetTotal();
                     return cartInfo.qty.toString();
-                }
+                };
             }
         };
 
         function createRow(obj) {
             var cells = createItemsRowCells(obj);
             var classes = obj.getCtorName() +
-                (obj.hasDiscount() ? " coupon" : '');
+                (obj.hasDiscount() ? ' coupon' : '');
             return domMainTblHelper.createRow(cells, classes);
         }
 
@@ -41,7 +42,7 @@ define(
             return domMainTblHelper.insertChildToParent(placeholder, headersRow);
         }
 
-        function createCell(key, obj){
+        function createCell(key, obj) {
             switch (key) {
                 case 'cart':
                     return createCartPlusMinusCell(obj);
@@ -54,6 +55,7 @@ define(
                     return domMainTblHelper.createCell(obj[key], key);
             }
         }
+
         function createItemsRowCells(obj) {
             var result = [];
             for (var i = 0; i < HEADERS.length; i++) {
@@ -95,6 +97,6 @@ define(
         return {
             reset: reset,
             init: init
-        }
+        };
     }
 );

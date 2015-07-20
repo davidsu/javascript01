@@ -1,26 +1,29 @@
 define(
     [],
-    function() {
+    function () {
+        'use strict';
         var items = null;
+
         function getItemsCount() {
             return items.length;
         }
+
         function getIterator(startIdx, maxSequenceSize) {
             var currIdx, endIdx;
 
-            if(!startIdx && !maxSequenceSize){
+            if (!startIdx && !maxSequenceSize) {
                 startIdx = 0;
                 maxSequenceSize = getItemsCount();
             }
 
-            function init() {
-                if(startIdx >= items.length){
+            function iteratorInit() {
+                if (startIdx >= items.length) {
                     throw new RangeError("can't start iteration after last item");
                 }
                 if (startIdx < 0 || maxSequenceSize <= 0) {
                     throw new RangeError(
-                        "startId = " + startIdx + "sequenceSize = " + maxSequenceSize +
-                        ". They must both be positive"
+                        'startId = ' + startIdx + 'sequenceSize = ' + maxSequenceSize +
+                        '. They must both be positive'
                     );
                 }
                 currIdx = startIdx;
@@ -36,29 +39,30 @@ define(
 
             function next() {
                 if (!hasNext()) {
-                    throw RangeError("iterator passed last");
+                    throw new RangeError('iterator passed last');
                 }
                 return items[currIdx++];
             }
 
 
-            init();
+            iteratorInit();
             return {
                 hasNext: hasNext,
                 next: next
 
-            }
+            };
         }
 
-        function getItemById(id){
-            for(var i = 0; i<items.length; i++){
-                if(items[i].id == id){
+        function getItemById(id) {
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].id === id) {
                     return items[i];
                 }
             }
             return null;
         }
-        function init(itemsArg){
+
+        function init(itemsArg) {
             items = itemsArg;
         }
 
@@ -67,6 +71,6 @@ define(
             getIterator: getIterator,
             getItemById: getItemById,
             init: init
-        }
+        };
     }
 );

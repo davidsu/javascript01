@@ -1,30 +1,30 @@
 define(
-
     [
         './utils.js'
     ],
-    function(domUtils){
+    function (domUtils) {
+        'use strict';
         var popUp = document.querySelector('.popup-cart');
-        function init(){
+
+        function init() {
             var closePopUpButton = document.querySelector('#close-popup-cart');
-            closePopUpButton.addEventListener('click', function(){
+            closePopUpButton.addEventListener('click', function () {
                 popUp.style.visibility = 'hidden';
             });
         }
 
-        function reset(newlyBuiltTable){
+        function reset(newlyBuiltTable) {
             var tblPlaceHolder = document.querySelector('.table.pop-up-cart-table');
             tblPlaceHolder.innerHTML = '';
             tblPlaceHolder.appendChild(newlyBuiltTable);
         }
 
 
-
         function setShowCartListener(funcCartIsEmpty, doBeforePopping) {
             var showCartButton = document.querySelector('#show-cart-button');
             showCartButton.addEventListener('click', function () {
                 if (funcCartIsEmpty()) {
-                    alert('cart is empty');
+                    alert('cart is empty');// eslint-disable-line no-alert
                     return;
                 }
                 doBeforePopping();
@@ -33,8 +33,6 @@ define(
                 //popUp.style.zIndex = 1;
             });
         }
-
-
 
 
         init();

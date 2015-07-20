@@ -1,0 +1,5 @@
+Gruntfile.js
+build/
+node_modules**/*.js
+src/lib/
+src/reactComponents/

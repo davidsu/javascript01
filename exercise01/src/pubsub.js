@@ -1,44 +1,49 @@
 define(
     [],
-    function (){
+    function () {
+        'use strict';
         var storedEvents = {};
-        function publish(eventName, data){
-            if(storedEvents[eventName]){
-                storedEvents[eventName].subscribers.forEach(function(callback){
+
+        function publish(eventName, data) {
+            if (storedEvents[eventName]) {
+                storedEvents[eventName].subscribers.forEach(function (callback) {
                     callback(data);
-                })
+                });
             }
         }
-        function subscribe(eventName, callback){
-            if(!storedEvents[eventName]){
+
+        function subscribe(eventName, callback) {
+            if (!storedEvents[eventName]) {
                 storedEvents[eventName] = {
                     subscribers: []
-                }
+                };
             }
-            if(storedEvents[eventName].subscribers.indexOf(callback) !== -1){
-                throw new ReferenceError("attemped to re-subscribe listener to event "+ eventName);
+            if (storedEvents[eventName].subscribers.indexOf(callback) !== -1) {
+                throw new ReferenceError('attemped to re-subscribe listener to event ' + eventName);
             }
             storedEvents[eventName].subscribers.push(callback);
 
 
         }
-        function unsubscribe(eventName, callback){
+
+        function unsubscribe(eventName, callback) {
             var stored = storedEvents[eventName];
-            if(stored) {
+            if (stored) {
                 var callbackIndex = stored.subscribers.indexOf(callback);
-                if(callbackIndex==-1){
+                if (callbackIndex === -1) {
                     return;
                 }
                 stored.subscribe.splice(callbackIndex);
-                if(!stored.subscribers.length){
+                if (!stored.subscribers.length) {
                     delete storedEvents[eventName];
                 }
             }
         }
-        return{
+
+        return {
             publish: publish,
             subscribe: subscribe,
             unsubscribe: unsubscribe
-        }
+        };
     }
 );

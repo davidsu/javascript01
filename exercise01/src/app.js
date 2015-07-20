@@ -1,4 +1,3 @@
-
 require(
     [
         './managers/coupon.js',
@@ -14,12 +13,13 @@ require(
         './lib/JSXTransformer.js'
     ],
     function (couponManager, items, paging, itemsRepo, mainTblManager) {
+        'use strict';
         var request = new XMLHttpRequest();
         request.open('GET', 'items/', true);
-        request.onload = function() {
+        request.onload = function () {
 
             // If everything is cool...
-            if (request.status >= 200 && request.status < 400){
+            if (request.status >= 200 && request.status < 400) {
 
                 var _items = JSON.parse(request.responseText);
                 itemsRepo.init(items.init(_items));

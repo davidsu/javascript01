@@ -6,8 +6,8 @@ define(
         '../tblUtils.js',
         '../lib/lodash.js'
     ],
-    function(cart, domCartPopUp, tblCreator, tblUtils, _){
-
+    function (cart, domCartPopUp, tblCreator, tblUtils, _) {
+        'use strict';
         var HEADERS = ['id', 'name', 'price', 'qty', 'total'];
         var headersRow = tblUtils.createHeadersRow(HEADERS);
 
@@ -26,14 +26,14 @@ define(
             return domCartPopUp.insertChildToParent(placeholder, headersRow);
         }
 
-        function createCells(obj){
+        function createCells(obj) {
             var result = [];
-            for(var i = 0; i<HEADERS.length; i++){
+            for (var i = 0; i < HEADERS.length; i++) {
                 var key = HEADERS[i];
-                switch(key){
+                switch (key) {
                     case 'total':
                         result.push(tblCreator.createCell(
-                            (obj.qty*obj.getPrice()).toFixed(2)
+                            (obj.qty * obj.getPrice()).toFixed(2)
                         ));
                         break;
                     case 'price':
@@ -42,15 +42,15 @@ define(
                         ));
                         break;
                     default:
-                        result.push(tblCreator.createCell(obj[key]))
+                        result.push(tblCreator.createCell(obj[key]));
                 }
 
             }
             return result;
         }
 
-        function appendTblBody(placeholder, iterator){
-            while(iterator.hasNext()){
+        function appendTblBody(placeholder, iterator) {
+            while (iterator.hasNext()) {
                 domCartPopUp.insertChildToParent(
                     placeholder,
                     composed.createRow(iterator.next())
@@ -59,7 +59,7 @@ define(
             return placeholder;
         }
 
-        function reset(){
+        function reset() {
             _.compose(
                 domCartPopUp.reset,
                 appendTblBody
@@ -67,13 +67,13 @@ define(
             return true;
         }
 
-        function init(){
+        function init() {
             domCartPopUp.setShowCartListener(cart.isEmpty, reset);
         }
 
         init();
 
-        return{
+        return {
             reset: reset
         };
     }

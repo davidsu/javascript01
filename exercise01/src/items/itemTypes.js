@@ -3,6 +3,7 @@ define(
         '../utils.js'
     ],
     function (utils) {
+        'use strict';
         function BaseItem(item) {
             if (!(this instanceof BaseItem)) {
                 return new BaseItem(item);
@@ -30,7 +31,7 @@ define(
             return price;
         };
 
-        BaseItem.prototype.hasDiscount = function(){
+        BaseItem.prototype.hasDiscount = function () {
             for (var key in this.coupons) {
                 if (this.coupons[key].active) {
                     return true;
@@ -45,8 +46,8 @@ define(
             }
         };
 
-        BaseItem.prototype.getCtorName = function(){
-          return utils.getCtorName(this);
+        BaseItem.prototype.getCtorName = function () {
+            return utils.getCtorName(this);
         };
 
 
@@ -66,7 +67,9 @@ define(
 
         };
 
-        OnSaleItem.prototype.hasDiscount = function(){return true;};
+        OnSaleItem.prototype.hasDiscount = function () {
+            return true;
+        };
 
 
         function OutOfStockItem(item) {
@@ -85,8 +88,6 @@ define(
         }
 
 
-
-
         utils.inherit(OutOfStockItem, BaseItem);
         utils.inherit(NewItem, BaseItem);
 
@@ -95,5 +96,5 @@ define(
             OutOfStockItem: OutOfStockItem,
             NewItem: NewItem,
             OnSaleItem: OnSaleItem
-        }
+        };
     });

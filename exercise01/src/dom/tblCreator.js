@@ -3,7 +3,7 @@ define(
         './utils.js'
     ],
     function (domUtils) {
-
+        'use strict';
         function createElement(strtype, strClass) {
             var result = document.createElement(strtype);
             result.setAttribute('class', strClass);
@@ -53,6 +53,6 @@ define(
             createHeadersRow: createHeadersRow,
             getDetachedPlaceholder: domUtils.createEmptyFragment
 
-        }
+        };
     }
 );

@@ -1,1 +1,0 @@
-define(["./dom/tblCreator.js","./lib/lodash.js"],function(a,b){function c(b){var c=[];return b.forEach(function(b){c.push(a.createHeaderCell(b))}),c}function d(d){var e=b.compose(a.createHeadersRow,c);return e(d)}return{createHeadersRow:d}});

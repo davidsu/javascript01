@@ -1,9 +1,10 @@
 define(
     [
         './utils.js',
-        './tblCreator.js',
+        './tblCreator.js'
     ],
     function (domUtils, tblCreator) {
+        'use strict';
         function reset(newlyBuiltTable) {
             var tblPlaceHolder = document.querySelector('.table.main');
             tblPlaceHolder.innerHTML = '';
@@ -25,7 +26,7 @@ define(
                 lblFixText.innerHTML = newLabelValue.toString();
             });
             return btn;
-        };
+        }
 
         function createCartLabel(strContent) {
             var labelQty = document.createElement('span');
@@ -34,9 +35,9 @@ define(
             return labelQty;
         }
 
-        function createToolTippedCell(cellContent, toolTipContent, strClass){
+        function createToolTippedCell(cellContent, toolTipContent, strClass) {
 
-            var cell = tblCreator.createCell(cellContent, strClass+' tooltip-wrapper');
+            var cell = tblCreator.createCell(cellContent, strClass + ' tooltip-wrapper');
             var toolTip = tblCreator.createCell(toolTipContent, 'tooltip tooltip-blue tooltip-animated');
             domUtils.insertChildToParent(cell, toolTip);
             return cell;

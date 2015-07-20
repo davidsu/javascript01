@@ -1,1 +1,0 @@
-define([],function(){function a(b){return this instanceof Error?(this.name="CouponIdError",void(this.message=b||"")):new a(b)}return a.prototype=Error.prototype,{CouponIdError:a}});

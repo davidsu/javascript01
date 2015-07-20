@@ -1,1 +1,0 @@
-define(function(){function a(a){var b=document.querySelector("#btn-activate-coupon");b.onclick=function(){var b=document.querySelector("#coupon-id"),c=b.value;a(c)}}return{setBtnCouponActivatorListener:a}});

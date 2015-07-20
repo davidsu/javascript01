@@ -1,8 +1,9 @@
-
 define(
     ['./itemTypes.js'],
-    function(itemTypes) {
-        var items =  [
+    function (itemTypes) {
+        'use strict';
+        /*eslint-disable */
+        var items = [
             {
                 "id": 0,
                 "name": "Laurel",
@@ -804,17 +805,18 @@ define(
                 "limit": 6
             }
         ];
+        /*eslint-enable*/
         var itemInstances = [];
 
         function init(newItems) {
             itemInstances = [];
             items = newItems;
             for (var i = 0; i < items.length; i++) {
-                if (i % 5 == 0) {
+                if (i % 5 === 0) {
                     itemInstances.push(new itemTypes.OnSaleItem(items[i]));
-                } else if (i % 7 == 0) {
+                } else if (i % 7 === 0) {
                     itemInstances.push(new itemTypes.OutOfStockItem(items[i]));
-                } else if (i % 3 == 0) {
+                } else if (i % 3 === 0) {
                     itemInstances.push(new itemTypes.NewItem(items[i]));
                 } else {
                     itemInstances.push(new itemTypes.BaseItem(items[i]));

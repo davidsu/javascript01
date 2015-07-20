@@ -6,21 +6,28 @@ define(
         '../pubsub.js',
         '../managers/total.js'
     ], function (itemsRepo, mainTblManager, utils, pubsub, totalManager) {
-
+        'use strict';
         var DEFAULT_PAGE_SIZE = 20;
         var currentPage = null;
 
 
-        document.addEventListener('goToPage', function(e){
+        document.addEventListener('goToPage', function (e) {
             goToPage(e.detail.pageNum);
         });
         function goToPage(pageNum) {
 
             var tbody = document.querySelector('.table.pop-up-cart-table');
-            tbody.innerHTML = "";
+            tbody.innerHTML = '';
             currentPage = pageNum || 0;
             var pageSize = getUserDefinedPageSize();
             mainTblManager.reset(itemsRepo.getIterator(pageNum * pageSize, pageSize));
+        }
+
+        function customEventOnclick(button, pgIndex){
+            var event = new CustomEvent('goToPage', {detail: {pageNum: pgIndex}});
+            button.onclick = function () {
+                document.dispatchEvent(event);
+            };
         }
 
         function createButtonsNavigationFragment() {
@@ -31,19 +38,14 @@ define(
                 var button = document.createElement('button');
                 button.innerHTML = i.toString();
                 fragment.appendChild(button);
-                (function (pgIndex) {
-                    var event = new CustomEvent('goToPage', {detail:{pageNum: pgIndex}});
-                    button.onclick = function () {
-                        document.dispatchEvent(event);
-                    }
-                })(i);
+                customEventOnclick(button, i);
             }
             return fragment;
         }
 
         function resetPagingNavigation(fragment) {
             var pagingNavigationPlaceholder = document.querySelector('#paging-navigation-placeholder');
-            pagingNavigationPlaceholder.innerHTML = "";
+            pagingNavigationPlaceholder.innerHTML = '';
             pagingNavigationPlaceholder.appendChild(fragment);
         }
 
@@ -63,7 +65,7 @@ define(
 
 
         function init() {
-            pubsub.subscribe('pageSizeReset', function(){
+            pubsub.subscribe('pageSizeReset', function () {
                 resetPagingButtons();
                 goToPage(0);
             });
@@ -76,13 +78,14 @@ define(
         function getNumOfPages() {
             var numOfPagesFloat = itemsRepo.getItemsCount() / getUserDefinedPageSize();
             var numOfPagesInt = parseInt(numOfPagesFloat, 10);
-            return numOfPagesFloat == numOfPagesInt ? numOfPagesInt : numOfPagesInt + 1;
+            return numOfPagesFloat === numOfPagesInt ? numOfPagesInt : numOfPagesInt + 1;
         }
 
-        function repaint(){
+        function repaint() {
             goToPage(currentPage);
             totalManager.resetTotal();
         }
+
         return {
             DEFAULT_PAGE_SIZE: DEFAULT_PAGE_SIZE,
             goToPage: goToPage,

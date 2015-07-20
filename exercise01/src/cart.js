@@ -1,9 +1,10 @@
 define(
-    [],
-    function(){
+    ['./lib/lodash.js'],
+    function (_) {
+        'use strict';
         var cart = {};
 
-        var CartObj = function(obj){
+        var CartObj = function (obj) {
             this.qty = 1;
             this.getPrice = obj.getPrice.bind(obj);
             this.id = obj.id;
@@ -11,47 +12,46 @@ define(
             this.itemSrc = obj;
         };
 
-        function addToCart(item){
+        function addToCart(item) {
             var success = true;
-            if(!cart[item.id]){
+            if (!cart[item.id]) {
                 cart[item.id] = new CartObj(item);
-            }else if(cart[item.id].qty==item.limit){
-                success =  false;
-            }else{
+            } else if (cart[item.id].qty === item.limit) {
+                success = false;
+            } else {
                 cart[item.id].qty++;
             }
-            return{
+            return {
                 success: success,
-                qty:cart[item.id].qty
+                qty: cart[item.id].qty
             };
         }
 
-        function removeFromCart(item){
+        function removeFromCart(item) {
             var success = true;
-            if(!cart[item.id]){
-                success = false
-            }else if(cart[item.id].qty == 0){
+            if (!cart[item.id]) {
+                success = false;
+            } else if (cart[item.id].qty === 0) {
                 delete cart[item.id];
-            }else{
+            } else {
                 cart[item.id].qty--;
             }
-            return{
+            return {
                 success: success,
                 qty: cart[item.id] ? cart[item.id].qty : 0
-            }
+            };
         }
 
-        function getTotal(){
-            var total = 0;
-            for(var key in cart){
-                total += cart[key].qty*cart[key].itemSrc.getPrice();
-            }
+        function getTotal() {
+            var total = _.reduce(cart, function (acc, value, key) {
+                return acc + cart[key].qty * cart[key].itemSrc.getPrice();
+            }, 0);
             return total.toFixed(2);
         }
 
-        function getCartItem(id){
-            for(var key in cart){
-                if(cart[key].id==id){
+        function getCartItem(id) {
+            for (var key in cart) {
+                if (cart[key].id === id) {
                     return cart[key];
 
                 }
@@ -59,28 +59,26 @@ define(
 
         }
 
-        function getIterator(){
-            var cartItemsArray = [];
+        function getIterator() {
+            var cartItemsArray = _.values(cart);
             var i = 0;
-            for(var key in cart){
-                cartItemsArray.push(cart[key]);
-            }
 
-            function hasNext(){
+
+            function hasNext() {
                 return i < cartItemsArray.length;
             }
 
-            function next(){
+            function next() {
                 return cartItemsArray[i++];
             }
 
-            return{
+            return {
                 hasNext: hasNext,
                 next: next
-            }
+            };
         }
 
-        function isEmpty(){
+        function isEmpty() {
             return Object.getOwnPropertyNames(cart).length === 0;
         }
 

@@ -3,7 +3,8 @@ define(
         './dom/tblCreator.js',
         './lib/lodash.js'
     ],
-    function(tblCreator, _){
+    function (tblCreator, _) {
+        'use strict';
         function createHeaderCells(headers) {
             var headerCells = [];
             headers.forEach(function (column) {
@@ -21,8 +22,7 @@ define(
         }
 
 
-
-        return{
+        return {
             createHeadersRow: createHeadersRow
         };
     }

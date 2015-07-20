@@ -1,3 +1,4 @@
+'use strict';
 // Require our dependencies
 var express = require('express'),
     fs = require('fs'),
@@ -21,8 +22,8 @@ app.disable('etag');
 //app.get('/page/:page/:skip', routes.page);
 
 // Set /public as our static content dir
-app.use("/", express.static('../'));
-app.get('/', function (res, req) {
+app.use('/', express.static('../'));
+app.get('/', function (req, res) {
     //console.log()
     res.sendFile('../index.html');
 });
@@ -34,9 +35,11 @@ app.get('/items', function (req, res) {
 });
 
 // Fire this bitch up (start our server)
+/*eslint-disable no-unused-vars*/
 var server = http.createServer(app).listen(port, function () {
     console.log('Express server listening on port ' + port);
 });
+/*eslint-enable*/
 
 // Initialize socket.io
 //var io = require('socket.io').listen(server);

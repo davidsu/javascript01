@@ -1,4 +1,5 @@
-// Require our dependencies
+'use strict';
+
 var express = require('express'),
   http = require('http');
 //  mongoose = require('mongoose');
@@ -20,12 +21,13 @@ app.disable('etag');
 //app.get('/page/:page/:skip', routes.page);
 
 // Set /public as our static content dir
-app.use("/", express.static('../src'));
-app.get('/', function(res, req){
+app.use('/', express.static('../src'));
+app.get('/', function(req, res){
    res.sendFile('../src/index.html');
 });
 
 // Fire this bitch up (start our server)
+/*eslint no-unused-vars:0*/
 var server = http.createServer(app).listen(port, function() {
   console.log('Express server listening on port ' + port);
 });

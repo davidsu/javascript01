@@ -1,20 +1,21 @@
 define(
     [],
     function () {
-        function CouponIdError(message){
+        'use strict';
+        function CouponIdError(message) {
             if (!(this instanceof Error)) {
                 return new CouponIdError(message);
             }
-            this.name = "CouponIdError";
-            this.message = (message || "");
+            this.name = 'CouponIdError';
+            this.message = (message || '');
         }
+
         CouponIdError.prototype = Error.prototype;
 
 
-
-        return{
+        return {
             CouponIdError: CouponIdError
-        }
+        };
 
     }
 );

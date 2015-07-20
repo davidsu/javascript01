@@ -1,17 +1,18 @@
 define(
     function () {
-
-        function setBtnCouponActivatorListener(activateCoupon){
+        'use strict';
+        function setBtnCouponActivatorListener(activateCoupon) {
             var btn = document.querySelector('#btn-activate-coupon');
-            btn.onclick = function(){
+            btn.onclick = function () {
                 var couponIdElement = document.querySelector('#coupon-id');
                 var couponId = couponIdElement.value;
-               activateCoupon(couponId);
+                activateCoupon(couponId);
 
             };
         }
-        return{
+
+        return {
             setBtnCouponActivatorListener: setBtnCouponActivatorListener
-        }
+        };
     }
 );

@@ -1,1 +1,0 @@
-define(["./items/itemsRepo.js","./managers/paging.js","./managers/coupon.js"],function(a,b,c){window.cmd={itemsRepo:a,pagingManager:b,couponManager:c}});

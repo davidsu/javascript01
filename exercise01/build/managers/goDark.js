@@ -1,1 +1,0 @@
-define(function(){var a="./css/themes/theme-dark/main.css",b="./css/themes/theme-bright/main.css",c=document.querySelector("#btn-go-dark"),d=document.querySelector("#main-css-file");c.onclick=function(){var e=d.getAttribute("href");e===b?(d.setAttribute("href",a),c.firstChild.data="Go Bright"):(d.setAttribute("href",b),c.firstChild.data="Go Dark")}});

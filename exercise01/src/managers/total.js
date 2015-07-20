@@ -4,13 +4,14 @@ define(
         '../cart.js'
     ],
     function (domTotalHelper, cart) {
-        function resetTotal(){
+        'use strict';
+        function resetTotal() {
             var total = cart.getTotal();
             domTotalHelper.resetTotal(total);
         }
 
-        return{
+        return {
             resetTotal: resetTotal
-        }
+        };
     }
 );

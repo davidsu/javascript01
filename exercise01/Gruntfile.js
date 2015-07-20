@@ -3,6 +3,9 @@
 module.exports = function (grunt) {
 
     grunt.config.init({
+        eslint: {
+            target: ['src**/*.js', '!reactComponents**/*.js']
+        },
         uglify: {
             my_target: {
                 files: [{
@@ -17,11 +20,14 @@ module.exports = function (grunt) {
         cssmin: {
             main: {
                 files: {
-                    'build/css//main/main.css': ['src/css/layouts/**/*.css', 'src/css/main/**/*.css'],
-                    'build/css/themes/theme-bright/main.css': ['src/css/themes/theme-bright/**/*.css', 'src/css/themes/tooltip.css'],
-                    'build/css/themes//theme-dark/main.css': ['src/css/themes/theme-dark/**/*.css', 'src/css/themes/tooltip.css']
+                    'build/main.min.css': ['src/css/layouts/**/*.css', 'src/css/main/**/*.css'],
+                    'build/theme_bright.min.css': ['src/css/themes/theme-bright/**/*.css', 'src/css/themes/tooltip.css'],
+                    'build/theme_dark.min.css': ['src/css/themes/theme-dark/**/*.css', 'src/css/themes/tooltip.css']
                 }
             }
+        },
+        processhtml: {
+            'build/index.html': ['src/index.html']
         },
         clean: {
             src: ['build']
@@ -32,17 +38,20 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'src/',
-                        src: ['index.html', 'items**/*.js', 'server**/*.*'],
+                        src: ['!index.html', 'items**/*.js', 'server**/*.*'],
                         dest: 'build/'
                     }
                 ]
             }
         }
     });
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-processhtml');
+    grunt.loadNpmTasks('grunt-eslint');
 
-    grunt.registerTask('build', ['clean', 'copy', 'uglify', 'cssmin'])
+    grunt.registerTask('build', ['clean', 'copy', 'uglify', 'cssmin', 'processhtml'])
 };
