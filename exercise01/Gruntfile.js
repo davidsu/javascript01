@@ -53,5 +53,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-eslint');
 
-    grunt.registerTask('build', ['clean', 'copy', 'uglify', 'cssmin', 'processhtml'])
+    grunt.registerTask('build', ['eslint', 'clean', 'copy', 'uglify', 'cssmin', 'processhtml'])
 };
