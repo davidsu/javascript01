@@ -73,7 +73,7 @@ define(
             return domMainTblHelper.createCartCell(plusButton, minusButton, labelQty);
         }
 
-        function appendTblBody(placeholder, iterator) {
+        function appendTblBody(iterator, placeholder) {
             while (iterator.hasNext()) {
                 domMainTblHelper.insertChildToParent(
                     placeholder,
@@ -84,10 +84,37 @@ define(
         }
 
         function reset(iterator) {
-            var placeholder = domMainTblHelper.getDetachedPlaceholder();
-            appendHeader(placeholder);
-            appendTblBody(placeholder, iterator);
-            domMainTblHelper.reset(placeholder);
+            _.compose(
+                domMainTblHelper.reset,
+                appendTblBody.bind(null, iterator),
+                appendHeader,
+                domMainTblHelper.getDetachedPlaceholder
+            )();
+
+            /*same as above*/
+            //_(domMainTblHelper.getDetachedPlaceholder())
+            //    .thru(appendHeader)
+            //    .thru(appendTblBody.bind(null, iterator))
+            //    .thru(domMainTblHelper.reset)
+            //    .value();
+
+            /*same as above*/
+            //var placeholder = domMainTblHelper.getDetachedPlaceholder();
+            //appendHeader(placeholder);
+            //appendTblBody(iterator, placeholder);
+            //domMainTblHelper.reset(placeholder);
+
+            /*same as above*/
+            //domMainTblHelper.reset(
+            //    appendTblBody(iterator,
+            //        appendHeader(
+            //            domMainTblHelper.getDetachedPlaceholder()
+            //        )
+            //    )
+            //);
+
+
+
         }
 
         function init(iterator) {

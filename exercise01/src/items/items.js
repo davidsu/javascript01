@@ -810,7 +810,9 @@ define(
 
         function init(newItems) {
             itemInstances = [];
-            items = newItems;
+            if (newItems) {
+                items = newItems;
+            }
             for (var i = 0; i < items.length; i++) {
                 if (i % 5 === 0) {
                     itemInstances.push(new itemTypes.OnSaleItem(items[i]));
@@ -825,9 +827,7 @@ define(
             return itemInstances;
         }
 
-        init(items);
-        itemInstances.init = init;
 
-        return itemInstances;
+        return init;
     }
 );

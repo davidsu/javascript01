@@ -1,13 +1,16 @@
 define(
     [
+        '../lib/lodash.js',
         '../cart.js',
         '../dom/mainTbl.js',
         '../tblUtils.js',
-        '../managers/total.js'
+        '../managers/total.js',
+        '../lib/react.js',
+        '../lib/JSXTransformer.js'
     ],
-    function (cart, domMainTblHelper, tblUtils, totalManager) {
+    function (_, cart, domMainTblHelper, tblUtils, totalManager) {
 
-        var Headers = React.createClass({
+        var Row = React.createClass({
             propTypes:{},
             mixins:[],
             statics:{},
@@ -18,9 +21,7 @@ define(
             componentDidUpdate:function(){},
             componentWillUnmount:function(){},
             getInitialState: function(){
-                return {
-                    HEADERS : ['id', 'name', 'desc', 'price', 'cart']
-                };
+                return {};
             },
             getDefaultProps:function(){
                 return {};
@@ -30,102 +31,59 @@ define(
             componentWillReceiveProps:function(nextProps){
                 //this.setState({});
             },
+            getClassName: function(){
+                return 'row ' + this.props.item.getCtorName() +
+                    (this.props.item.hasDiscount() ? ' coupon' : '')
+            },
             render: function(){
-                return(this.state.HEADERS.map(function(header){
-                    return <div className=header></div>
-                }));
+                return(<div></div>);
+            }
+        });
+
+        var Headers = React.createClass({
+            HEADERS: ['id', 'name', 'desc', 'price', 'cart'],
+            render: function () {
+                return (<div className='heading'>
+                        {
+                            this.HEADERS.map(function (header) {
+                                    var className = 'cell '+ header;
+                                    return(<div className={className}>
+                                        {header}
+                                    </div>)
+                                }
+                            )
+                        }
+                    </div>
+                );
+            }
+        });
+
+        var Table = React.createClass({
+            getInitialState: function(){
+                return {
+                    items: []
+                };
+            },
+            render: function(){
+                return(<div className='table main'>
+                    <Headers></Headers>
+                </div>);
             }
         });
 
 
-        var headersRow = tblUtils.createHeadersRow(HEADERS);
 
-        var cartEvent = {
-            minus: function (obj) {
-                return function () {
-                    var returnval = cart.removeFromCart(obj).qty.toString();
-                    totalManager.resetTotal();
-                    return returnval;
-                }
-            },
-            plus: function (obj) {
-                return function () {
-                    var cartInfo = cart.addToCart(obj);
-                    if (!cartInfo.success) {
-                        alert("can't sell you more or you'll get addicted!");
-                        return;
-                    }
-                    totalManager.resetTotal();
-                    return cartInfo.qty.toString();
-                }
-            }
-        };
-
-        function createRow(obj) {
-            var cells = createItemsRowCells(obj);
-            var classes = obj.getCtorName() +
-                (obj.hasDiscount() ? " coupon" : '');
-            return domMainTblHelper.createRow(cells, classes);
+        function init(items){
+            React.render(<Table />, document.getElementById('tblContainer'));
         }
 
-        function appendHeader(placeholder) {
-            return domMainTblHelper.insertChildToParent(placeholder, headersRow);
-        }
 
-        function createCell(key, obj){
-            switch (key) {
-                case 'cart':
-                    return createCartPlusMinusCell(obj);
-                case 'price':
-                    if (obj.hasDiscount()) {
-                        return domMainTblHelper.createToolTippedCell('$' + (obj.getPrice().toFixed(2)), 'full price: ' + obj.getFullPrice(), key);
-                    }
-                    return domMainTblHelper.createCell('$' + (obj.getPrice().toFixed(2)), key);
-                default:
-                    return domMainTblHelper.createCell(obj[key], key);
-            }
-        }
-        function createItemsRowCells(obj) {
-            var result = [];
-            for (var i = 0; i < HEADERS.length; i++) {
-                result.push(createCell(HEADERS[i], obj));
-            }
-            return result;
-        }
 
-        function createCartPlusMinusCell(obj) {
-            var cartItem = cart.getItemInChart(obj.id);
-
-            var labelQty = domMainTblHelper.createCartLabel(cartItem ? cartItem.qty : 0);
-            var plusButton = domMainTblHelper.createCartAddRemoveButton(cartEvent.plus(obj), labelQty, '+');
-            var minusButton = domMainTblHelper.createCartAddRemoveButton(cartEvent.minus(obj), labelQty, '-');
-            return domMainTblHelper.createCartCell(plusButton, minusButton, labelQty);
-        }
-
-        function appendTblBody(placeholder, iterator) {
-            while (iterator.hasNext()) {
-                domMainTblHelper.insertChildToParent(
-                    placeholder,
-                    createRow(iterator.next())
-                );
-            }
-            return placeholder;
-        }
-
-        function reset(iterator) {
-            var placeholder = domMainTblHelper.getDetachedPlaceholder();
-            appendHeader(placeholder);
-            appendTblBody(placeholder, iterator);
-            domMainTblHelper.reset(placeholder);
-        }
-
-        function init(iterator) {
-            reset(iterator);
-        }
 
         return {
-            reset: reset,
+            Table: Table,
             init: init
-        }
+        };
+
     }
 );

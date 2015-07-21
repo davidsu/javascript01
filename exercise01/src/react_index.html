@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <!-- build:css main.min.css -->
+        <link rel="stylesheet" type="text/css" href="./css/main/main.css">
+        <!-- /build-->
+        <!-- build:[href] theme_dark.min.css -->
+        <link rel="stylesheet" type="text/css" href="./css/themes/theme-dark/main.css" id="main-css-file">
+        <!-- /build-->
+
+        <script src="https://fb.me/react-0.13.3.min.js"></script>
+        <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+    </head>
+    <body>
+        <dialog class="popup-cart">
+            <div id="popup-cart-container">
+                <button id="close-popup-cart">x</button>
+                <div class="table pop-up-cart-table"></div>
+            </div>
+
+        </dialog>
+        <main class="container">
+            <div id="tblContainer">
+            </div>
+
+
+            <footer class="footer">
+                <section class="upper-footer-container">
+                    <div class="upper-footer">
+                        <div class="activate-coupon">
+                            <label for="coupon-id">Select Coupon</label>
+                            <input type="number" id="coupon-id">
+                            <button id="btn-activate-coupon">Activate Coupon</button>
+                        </div>
+
+                        <button id="show-cart-button">SHOW CART</button>
+                        <div class="total-div">
+                            <label>Total</label>
+                            <label id="total-placeholder">0</label>
+                        </div>
+                    </div>
+                </section>
+                <section class="lower-footer">
+
+                    <button class="go-dark" id="btn-go-dark">Go Bright</button>
+                    <div class="paging">
+                        <label for="page-size" class="input-label">Page Size</label>
+                        <input type="number" id="page-size"/>
+                        <button id="set-page-size">Set</button>
+                        <span id="paging-navigation-placeholder"></span>
+                    </div>
+                </section>
+            </footer>
+        </main>
+
+
+        <!--<script data-main="react_app.js" src="./lib/require.js"></script>-->
+       <script type="text/jsx">
+           var Headers = React.createClass({
+               HEADERS: ['id', 'name', 'desc', 'price', 'cart'],
+               render: function () {
+                   return (<div className='heading'>
+                               {
+                                   this.HEADERS.map(function (header) {
+                                               var className = 'cell '+ header;
+                                               return(<div className={className}>
+                                                   {header}
+                                               </div>)
+                                           }
+                                   )
+                               }
+                           </div>
+                   );
+               }
+           });
+
+           var Table = React.createClass({
+               render: function(){
+                   return(<div className='table main'>
+                       <Headers></Headers>
+                   </div>);
+               }
+           });
+
+           React.render(<Table />, document.getElementById('tblContainer'));
+       </script>
+    </body>
+</html>
