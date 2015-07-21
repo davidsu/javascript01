@@ -10,7 +10,7 @@ define(
     ],
     function (_, cart, domMainTblHelper, tblUtils, totalManager) {
 
-        var Cell = React.createClass({
+        var Cell = React.createClass({displayName: "Cell",
             propTypes: {},
             mixins: [],
             statics: {},
@@ -36,16 +36,14 @@ define(
             componentWillReceiveProps: function (nextProps) {
                 //this.setState({});
             },
-            getClassName: function () {
-                return 'cell ' + this.props.columnName;
-            },
             render: function () {
-                return (<div className={this.getClassName()}>{this.props.item[this.props.columnName]}</div>);
+                return (React.createElement("div", null, "'cell'"));
             }
         });
 
 
-        var Row = React.createClass({
+
+        var Row = React.createClass({displayName: "Row",
             propTypes: {},
             mixins: [],
             statics: {},
@@ -76,64 +74,65 @@ define(
                     (this.props.item.hasDiscount() ? ' coupon' : '')
             },
             render: function () {
-                return (<div className={this.getClassName()}>
-                    {this.props.HEADERS.map(
+                return (React.createElement("div", {className: this.getClassName()}, 
+                    _.forEach(
+                        this.props.HEADERS,
                         function (columnName) {
-                            return <Cell columnName={columnName} item={this.props.item}/>
-                        }.bind(this))
-                    }
-                </div>);
+                            return React.createElement(Cell, {columnName: columnName})
+                        }
+                    )
+                ));
             }
         });
 
-        var Headers = React.createClass({
+        var Headers = React.createClass({displayName: "Headers",
 
             render: function () {
-                return (<div className='heading'>
-                        {
+                return (React.createElement("div", {className: "heading"}, 
+                        
                             this.props.HEADERS.map(function (header) {
                                     var className = 'cell ' + header;
-                                    return (<div className={className}>
-                                        {header}
-                                    </div>)
+                                    return (React.createElement("div", {className: className}, 
+                                        header
+                                    ))
                                 }
                             )
-                        }
-                    </div>
+                        
+                    )
                 );
             }
         });
 
-        var Table = React.createClass({
+        var Table = React.createClass({displayName: "Table",
             propTypes: {
-                items: React.PropTypes.array
+                    items: React.PropTypes.array
             },
             getDefaultProps: function () {
                 return {HEADERS: ['id', 'name', 'desc', 'price', 'cart']};
             },
             render: function () {
-                return (<div className='table main'>
-                    <Headers HEADERS={this.props.HEADERS}></Headers>
-                    {_.map(
+                return (React.createElement("div", {className: "table main"}, 
+                    React.createElement(Headers, {HEADERS: this.props.HEADERS}), 
+                    _.map(
                         this.props.items,
-                        function (item) {
-                            return <Row item={item} HEADERS={this.props.HEADERS}/>
+                        function(item){
+                            return React.createElement(Row, {item: item, HEADERS: this.props.HEADERS})
                         }.bind(this)
-                    )}
-                </div>);
+                    )
+                ));
             }
         });
 
 
-        function reRender(items) {
-            React.render(<Table items={items}/>, document.getElementById('tblContainer'))
+        function reRender(items){
+            React.render(React.createElement(Table, {items: items}), document.getElementById('tblContainer'))
         }
 
         function init(items) {
             reRender(items);
         }
 
-        var tbl = <Table />;
+        var tbl = React.createElement(Table, null);
 
 
         return {

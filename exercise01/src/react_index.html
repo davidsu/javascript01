@@ -56,35 +56,35 @@
         </main>
 
 
-        <!--<script data-main="react_app.js" src="./lib/require.js"></script>-->
-       <script type="text/jsx">
-           var Headers = React.createClass({
-               HEADERS: ['id', 'name', 'desc', 'price', 'cart'],
-               render: function () {
-                   return (<div className='heading'>
-                               {
-                                   this.HEADERS.map(function (header) {
-                                               var className = 'cell '+ header;
-                                               return(<div className={className}>
-                                                   {header}
-                                               </div>)
-                                           }
-                                   )
-                               }
-                           </div>
-                   );
-               }
-           });
+        <script data-main="react_app.js" src="./lib/require.js"></script>
+       <!--<script type="text/jsx">-->
+           <!--var Headers = React.createClass({-->
+               <!--HEADERS: ['id', 'name', 'desc', 'price', 'cart'],-->
+               <!--render: function () {-->
+                   <!--return (<div className='heading'>-->
+                               <!--{-->
+                                   <!--this.HEADERS.map(function (header) {-->
+                                               <!--var className = 'cell '+ header;-->
+                                               <!--return(<div className={className}>-->
+                                                   <!--{header}-->
+                                               <!--</div>)-->
+                                           <!--}-->
+                                   <!--)-->
+                               <!--}-->
+                           <!--</div>-->
+                   <!--);-->
+               <!--}-->
+           <!--});-->
 
-           var Table = React.createClass({
-               render: function(){
-                   return(<div className='table main'>
-                       <Headers></Headers>
-                   </div>);
-               }
-           });
+           <!--var Table = React.createClass({-->
+               <!--render: function(){-->
+                   <!--return(<div className='table main'>-->
+                       <!--<Headers></Headers>-->
+                   <!--</div>);-->
+               <!--}-->
+           <!--});-->
 
-           React.render(<Table />, document.getElementById('tblContainer'));
-       </script>
+           <!--React.render(<Table />, document.getElementById('tblContainer'));-->
+       <!--</script>-->
     </body>
 </html>

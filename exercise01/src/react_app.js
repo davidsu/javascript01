@@ -4,7 +4,7 @@ require(
         './items/items.js',
         'managers/paging.js',
         './items/itemsRepo.js',
-        './reactComponents/mainTbl.js',
+        './reactBuilt/mainTbl.js',
         './managers/cartPopUp.js',
 
         'cmdLine.js',
@@ -38,6 +38,8 @@ require(
             paging.resetPagingButtons();
         };
         //request.send();
+        itemsRepo.init(items());
+        mainTblManager.reRender(itemsRepo.getItems(0, 5));
     }
 );
 

@@ -53,6 +53,10 @@ define(
             };
         }
 
+        function getItems(startIdx, maxSequenceSize){
+            return _.slice(items, startIdx, startIdx + maxSequenceSize);
+        }
+
         function getItemById(id) {
             for (var i = 0; i < items.length; i++) {
                 if (items[i].id === id) {
@@ -70,7 +74,8 @@ define(
             getItemsCount: getItemsCount,
             getIterator: getIterator,
             getItemById: getItemById,
-            init: init
+            init: init,
+            getItems: getItems
         };
     }
 );
