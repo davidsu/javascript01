@@ -10,35 +10,41 @@ define(
     ],
     function (_, cart, domMainTblHelper, tblUtils, totalManager) {
 
-        var Cell = React.createClass({
-            propTypes: {},
-            mixins: [],
-            statics: {},
-            shouldComponentUpdate: function () {
-                return true;
-            },
-            componentWillUpdate: function () {
-            },
-            componentDidUpdate: function () {
-            },
-            componentWillUnmount: function () {
-            },
+
+        var CartCell = React.createClass({
             getInitialState: function () {
-                return {};
+                var cartItem = cart.getItemInChart(this.props.item.id);
+                return {
+                    qty: cartItem? cartItem.qty : 0
+                };
             },
-            getDefaultProps: function () {
-                return {};
+            addItem: function () {
+                var cartInfo = cart.addToCart(this.props.item);
+                if (!cartInfo.success) {
+                    alert("can't sell you more or you'll get addicted!");// eslint-disable-line no-alert
+                    return null;
+                }
+                totalManager.resetTotal();
+                this.setState({qty: cartInfo.qty});
             },
-            componentWillMount: function () {
+            removeItem: function () {
+
+                this.setState({qty: cart.removeFromCart(this.props.item).qty});
+                totalManager.resetTotal();
             },
-            componentDidMount: function () {
-            },
-            componentWillReceiveProps: function (nextProps) {
-                //this.setState({});
-            },
+            render: function () {
+                return (<div className='cell'>
+                    <button onClick={this.removeItem}>-</button>
+                    <button onClick={this.addItem}>+</button>
+                    <span>{this.state.qty}</span>
+                </div>);
+            }
+        });
+        var Cell = React.createClass({
             getClassName: function () {
                 return 'cell ' + this.props.columnName;
             },
+
             render: function () {
                 return (<div className={this.getClassName()}>{this.props.item[this.props.columnName]}</div>);
             }
@@ -46,31 +52,6 @@ define(
 
 
         var Row = React.createClass({
-            propTypes: {},
-            mixins: [],
-            statics: {},
-            shouldComponentUpdate: function () {
-                return true;
-            },
-            componentWillUpdate: function () {
-            },
-            componentDidUpdate: function () {
-            },
-            componentWillUnmount: function () {
-            },
-            getInitialState: function () {
-                return {};
-            },
-            getDefaultProps: function () {
-                return {};
-            },
-            componentWillMount: function () {
-            },
-            componentDidMount: function () {
-            },
-            componentWillReceiveProps: function (nextProps) {
-                //this.setState({});
-            },
             getClassName: function () {
                 return 'row ' + this.props.item.getCtorName() +
                     (this.props.item.hasDiscount() ? ' coupon' : '')
@@ -79,7 +60,13 @@ define(
                 return (<div className={this.getClassName()}>
                     {this.props.HEADERS.map(
                         function (columnName) {
-                            return <Cell columnName={columnName} item={this.props.item}/>
+                            switch (columnName) {
+                                case 'cart':
+                                    return <CartCell item={this.props.item}/>;
+                                default:
+                                    return <Cell columnName={columnName} item={this.props.item}/>
+                            }
+
                         }.bind(this))
                     }
                 </div>);
